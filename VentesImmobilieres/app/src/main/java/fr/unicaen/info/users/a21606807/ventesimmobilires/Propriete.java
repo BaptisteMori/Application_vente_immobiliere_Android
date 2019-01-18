@@ -12,12 +12,12 @@ public class Propriete {
     private ArrayList<String> caracteristiques;
     private int prix;
     private String ville;
-    private String vendeur;
+    private Vendeur vendeur;
     private ArrayList<String> images;
     private Date date;
 
     public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,
-                     String ville, String vendeur, ArrayList<String> images, Date date) {
+                     String ville, Vendeur vendeur, ArrayList<String> images, Date date) {
 
         this.id = id;
         this.titre = titre;
@@ -33,46 +33,57 @@ public class Propriete {
     }
 
     public void addImages(String image) {
+
         this.images.add(image);
     }
 
     public String getId() {
+
         return id;
     }
 
     public String getTitre() {
+
         return titre;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public int getNombre_piece() {
+
         return nombre_piece;
     }
 
     public ArrayList<String> getCaracteristiques() {
+
         return caracteristiques;
     }
 
     public int getPrix() {
+
         return prix;
     }
 
     public String getVille() {
+
         return ville;
     }
 
-    public String getVendeur() {
+    public Vendeur getVendeur() {
+
         return vendeur;
     }
 
     public ArrayList<String> getImages() {
+
         return images;
     }
 
     public Date getDate() {
+
         return date;
     }
 

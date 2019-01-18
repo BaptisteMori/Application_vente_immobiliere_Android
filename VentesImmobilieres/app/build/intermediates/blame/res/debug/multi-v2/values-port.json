@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/etudiants/21602052/Documents/l3/android/Application_vente_immobiliere_Android/VentesImmobilieres/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-port/values-port.xml",
+            "map": [
+                {
+                    "source": "/run/user/21602052/.android-3.2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/c519488e8c6b7eee76533a92068fd391/res/values-port/values-port.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "55",
+                        "endOffsets": "106"
+                    }
+                }
+            ]
+        }
+    ]
+}

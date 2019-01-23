@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/etudiants/21602052/Documents/l3/android/Application_vente_immobiliere_Android/VentesImmobilieres/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-en-rAU/values-en-rAU.xml",
+            "outputFile": "C:\\Users\\Val\\Desktop\\cours\\L3\\android\\Application_vente_immobiliere_Android\\VentesImmobilieres\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-en-rAU\\values-en-rAU.xml",
             "map": [
                 {
-                    "source": "/run/user/21602052/.android-3.2/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/c519488e8c6b7eee76533a92068fd391/res/values-en-rAU/values-en-rAU.xml",
+                    "source": "C:\\Users\\Val\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\dadf4acdc06aaaf4b5de617170565f21\\res\\values-en-rAU\\values-en-rAU.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/run/user/21602052/.android-3.2/.gradle/caches/transforms-1/files-1.1/support-compat-28.0.0.aar/07ac369ccffe9a3f6365db18db743599/res/values-en-rAU/values-en-rAU.xml",
+                    "source": "C:\\Users\\Val\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-28.0.0.aar\\f0817f0dde4a801a85ba956bd9c9f0c3\\res\\values-en-rAU\\values-en-rAU.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

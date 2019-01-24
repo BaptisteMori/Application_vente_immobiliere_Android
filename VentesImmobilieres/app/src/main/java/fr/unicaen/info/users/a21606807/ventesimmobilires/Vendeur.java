@@ -16,6 +16,10 @@ public class Vendeur {
         this.telephone=telephone;
     }
 
+    public String getPrenomNom() {
+        return this.prenom + " " + this.nom;
+    }
+
     public String getId() {
         return id;
     }

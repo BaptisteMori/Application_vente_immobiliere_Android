@@ -4,10 +4,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -24,10 +30,58 @@ public class ActivityAnnonce extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonce);
 
+        /*
+        ImageView image = (ImageView) findViewById(R.id.image_annonce);
+        Picasso.get().load(
+                "https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg"
+        ).into(image);*/
+
+        ArrayList<String> images = new ArrayList<>();
+        images.add("https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg");
+        Propriete propriete = new Propriete(
+                "1",
+                "Maison SWAG",
+                "Super maison trop géniale !",
+                5,
+                new ArrayList<String>(),
+                1005600,
+                "Moncuq",
+                new Vendeur(
+                        "76",
+                        "Marley",
+                        "Bob",
+                        "Boby@gmail.com",
+                        "0215653289"
+                ),
+                images,
+                new Date()
+        );
+
+        this.fillAnnonce(propriete);
+
+        //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
+    }
+
+    public void fillAnnonce(Propriete propriete) {
+        ((TextView) findViewById(R.id.titre_annonce)).setText(propriete.getTitre());
+        ((TextView) findViewById(R.id.text_prix)).setText(propriete.getPrix() + " €");
+        ((TextView) findViewById(R.id.text_ville)).setText(propriete.getVille());
+        ((TextView) findViewById(R.id.text_description)).setText(propriete.getDescription());
+        ((TextView) findViewById(R.id.text_date)).setText(propriete.getDate().toString());
+        ((TextView) findViewById(R.id.text_nomVendeur)).setText(propriete.getVendeur().getPrenomNom());
+        ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
+        ((TextView) findViewById(R.id.text_telephoneVendeur)).setText(propriete.getVendeur().getTelephone());
+        ImageView image = (ImageView) findViewById(R.id.image_annonce);
+        Picasso.get().load(
+                propriete.getImages().get(0)
+        ).into(image);
+    }
+
+    public void getPropriete(String url) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
-                .url("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json")
+                .url(url)
                 .build();
 
         client.newCall(request).enqueue(new Callback() {
@@ -42,18 +96,14 @@ public class ActivityAnnonce extends AppCompatActivity {
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected HTTP code " + response);
                     }
-                    Headers responseHeaders = response.headers();
-                    Log.i("val", responseHeaders.toString());
-                    for (int i = 0, size = responseHeaders.size(); i<size; i++) {
-                        Log.i("val", responseHeaders.name(i) + ": " + responseHeaders.value(i));
-                    }
+                    Moshi moshi = new Moshi.Builder()
+                            .add(new ProrieteAdapter())
+                            .build();
+                    JsonAdapter<Propriete> adapter = moshi.adapter(Propriete.class);
+                    Log.i("val", "PASSAGE ICI");
+                    adapter.fromJson(responseBody.string());
                 }
             }
         });
-
-        ImageView image = (ImageView) findViewById(R.id.image_annonce);
-        Picasso.get().load(
-                "https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg"
-        ).into(image);
     }
 }

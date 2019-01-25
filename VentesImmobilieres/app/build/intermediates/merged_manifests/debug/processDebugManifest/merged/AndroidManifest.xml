@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.ActivityAnnonce" />
+        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.ListAnnonces" />
 
         <provider
             android:name="com.squareup.picasso.PicassoProvider"

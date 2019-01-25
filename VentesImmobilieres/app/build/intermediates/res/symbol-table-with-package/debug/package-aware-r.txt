@@ -1119,6 +1119,7 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_item
 id left
 id line1
 id line3
@@ -1152,6 +1153,7 @@ id profil
 id progress_circular
 id progress_horizontal
 id radio
+id recycler_view
 id right
 id right_icon
 id right_side
@@ -1214,6 +1216,7 @@ id text_mailVendeur
 id text_nomVendeur
 id text_prix
 id text_telephoneVendeur
+id text_title
 id text_ville
 id textinput_counter
 id textinput_error
@@ -1288,6 +1291,8 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_annonce
+layout activity_annonces_list_element
+layout activity_list_annonces
 layout activity_main
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog

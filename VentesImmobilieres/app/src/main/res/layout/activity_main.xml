@@ -38,6 +38,7 @@
         android:layout_marginTop="24dp"
         android:text="Lister les biens"
         android:textAllCaps="false"
+        android:onClick="openListAnnonces"
         app:layout_constraintEnd_toEndOf="@+id/deposer"
         app:layout_constraintStart_toStartOf="@+id/deposer"
         app:layout_constraintTop_toBottomOf="@+id/deposer" />

@@ -1,9 +1,12 @@
 package fr.unicaen.info.users.a21606807.ventesimmobilires;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Propriete {
+public class Propriete implements Parcelable {
 
     private String id;
     private String titre;
@@ -15,6 +18,20 @@ public class Propriete {
     private Vendeur vendeur;
     private ArrayList<String> images;
     private Date date;
+
+    //creator - used when un-parceling our parcle (creating the object)
+    public static final Parcelable.Creator<Propriete> CREATOR = new Parcelable.Creator<Propriete>(){
+
+        @Override
+        public Propriete createFromParcel(Parcel parcel) {
+            return new Propriete(parcel);
+        }
+
+        @Override
+        public Propriete[] newArray(int size) {
+            return new Propriete[0];
+        }
+    };
 
     public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,
                      String ville, Vendeur vendeur, ArrayList<String> images, Date date) {
@@ -29,7 +46,42 @@ public class Propriete {
         this.vendeur = vendeur;
         this.images = images;
         this.date = date;
+    }
 
+    public Propriete(Parcel parcel) {
+        this(
+                parcel.readString(),
+                parcel.readString(),
+                parcel.readString(),
+                parcel.readInt(),
+                parcel.readArrayList(String.class.getClassLoader()),
+                parcel.readInt(),
+                parcel.readString(),
+                (Vendeur) parcel.readParcelable(Vendeur.class.getClassLoader()),
+                parcel.readArrayList(String.class.getClassLoader()),
+                new Date(parcel.readLong())
+        );
+    }
+
+    //write object values to parcel for storage
+    @Override
+    public void writeToParcel(Parcel dest, int flags){
+        dest.writeString(id);
+        dest.writeString(titre);
+        dest.writeString(description);
+        dest.writeInt(nombre_piece);
+        dest.writeList(caracteristiques);
+        dest.writeInt(prix);
+        dest.writeString(ville);
+        dest.writeParcelable(vendeur, 1);
+        dest.writeList(images);
+        dest.writeLong(date.getTime());
+    }
+
+    //return hashcode of object
+    @Override
+    public int describeContents() {
+        return hashCode();
     }
 
     public void addImages(String image) {

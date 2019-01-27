@@ -111,8 +111,9 @@ public class ListAnnonces extends AppCompatActivity {
         recycler.setAdapter(annonce_adapter);
     }
 
-    public void openAnnonce(View v) {
+    public void openAnnonce(View v, Propriete propriete) {
         Intent intent = new Intent(this, ActivityAnnonce.class);
+        intent.putExtra("propriete", propriete);
         startActivity(intent);
     }
 
@@ -150,14 +151,14 @@ public class ListAnnonces extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(AnnonceViewHolder annonce_view_holder, int position) {
+        public void onBindViewHolder(AnnonceViewHolder annonce_view_holder, final int position) {
             Propriete propriete = list.get(position);
             annonce_view_holder.bind(propriete);
 
             annonce_view_holder.layout_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openAnnonce(view);
+                    openAnnonce(view, list.get(position));
                 }
             });
         }

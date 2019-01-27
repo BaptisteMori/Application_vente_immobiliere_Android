@@ -38,6 +38,7 @@ public class ActivityAnnonce extends AppCompatActivity {
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg");
+        /*
         Propriete propriete = new Propriete(
                 "1",
                 "Maison SWAG",
@@ -55,8 +56,8 @@ public class ActivityAnnonce extends AppCompatActivity {
                 ),
                 images,
                 new Date()
-        );
-
+        );*/
+        Propriete propriete = getIntent().getParcelableExtra("propriete");
         this.fillAnnonce(propriete);
 
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
@@ -101,7 +102,8 @@ public class ActivityAnnonce extends AppCompatActivity {
                             .build();
                     JsonAdapter<Propriete> adapter = moshi.adapter(Propriete.class);
                     Log.i("val", "PASSAGE ICI");
-                    adapter.fromJson(responseBody.string());
+                    Propriete prop = adapter.fromJson(responseBody.string());
+                    Log.i("val", prop.toString());
                 }
             }
         });

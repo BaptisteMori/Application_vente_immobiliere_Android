@@ -5,24 +5,24 @@
     build-mode="COLD"
     density="xxxhdpi"
     format="10"
-    ir-eligibility="FIELD_ADDED"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.2.1"
-    timestamp="1548612882959"
+    timestamp="1548615354745"
     token="7634667597452959030"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="400" />
+        duration="325" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="60" />
+        duration="53" />
     <task
         name="verifier"
-        duration="81" />
+        duration="11" />
 
     <artifact
         location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -71,8 +71,8 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_ADDED"
-        timestamp="1548612882959"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1548615354745"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"

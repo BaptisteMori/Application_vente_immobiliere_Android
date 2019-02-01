@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Propriete implements Parcelable {
 
@@ -12,12 +13,12 @@ public class Propriete implements Parcelable {
     private String titre;
     private String description;
     private int nombre_piece;
-    private ArrayList<String> caracteristiques;
+    private List<String> caracteristiques;
     private int prix;
     private String ville;
     private Vendeur vendeur;
-    private ArrayList<String> images;
-    private Date date;
+    private List<String> images;
+    private Long date;
 
     //creator - used when un-parceling our parcle (creating the object)
     public static final Parcelable.Creator<Propriete> CREATOR = new Parcelable.Creator<Propriete>(){
@@ -34,7 +35,7 @@ public class Propriete implements Parcelable {
     };
 
     public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,
-                     String ville, Vendeur vendeur, ArrayList<String> images, Date date) {
+                     String ville, Vendeur vendeur, ArrayList<String> images, Long date) {
 
         this.id = id;
         this.titre = titre;
@@ -48,6 +49,11 @@ public class Propriete implements Parcelable {
         this.date = date;
     }
 
+    public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,
+                     String ville, Vendeur vendeur, ArrayList<String> images, Date date){
+        this(id,titre,description,nombre_piece,caracteristiques,prix,ville,vendeur,images,date.getTime());
+    }
+
     public Propriete(Parcel parcel) {
         this(
                 parcel.readString(),
@@ -59,7 +65,7 @@ public class Propriete implements Parcelable {
                 parcel.readString(),
                 (Vendeur) parcel.readParcelable(Vendeur.class.getClassLoader()),
                 parcel.readArrayList(String.class.getClassLoader()),
-                new Date(parcel.readLong())
+                parcel.readLong()
         );
     }
 
@@ -75,7 +81,7 @@ public class Propriete implements Parcelable {
         dest.writeString(ville);
         dest.writeParcelable(vendeur, 1);
         dest.writeList(images);
-        dest.writeLong(date.getTime());
+        dest.writeLong(date);
     }
 
     //return hashcode of object
@@ -111,7 +117,7 @@ public class Propriete implements Parcelable {
 
     public ArrayList<String> getCaracteristiques() {
 
-        return caracteristiques;
+        return ((ArrayList)caracteristiques);
     }
 
     public int getPrix() {
@@ -131,12 +137,12 @@ public class Propriete implements Parcelable {
 
     public ArrayList<String> getImages() {
 
-        return images;
+        return ((ArrayList)images);
     }
 
     public Date getDate() {
 
-        return date;
+        return new Date(date);
     }
 
 }

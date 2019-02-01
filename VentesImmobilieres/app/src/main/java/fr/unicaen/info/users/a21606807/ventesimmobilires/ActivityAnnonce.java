@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -69,6 +70,7 @@ public class ActivityAnnonce extends AppCompatActivity {
         this.fillAnnonce(propriete);
 
         this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
+        //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
     }
 
     public void fillAnnonce(Propriete propriete) {
@@ -106,15 +108,15 @@ public class ActivityAnnonce extends AppCompatActivity {
                         throw new IOException("Unexpected HTTP code " + response);
                     }
 
-                    Moshi moshi = new Moshi.Builder().build();
+                    Moshi moshi = new Moshi.Builder().add(new ProrieteAdapter()).build();
 
                     Log.i("val", "PASSAGE ICI");
-                    JsonAdapter<Propriete> adapter = moshi.adapter(Propriete.class);
+                    JsonAdapter<Propriete> jsonAdapter = moshi.adapter(Propriete.class);
                     Log.i("val", "PASSAGE LA !!!!");
 
-                    Propriete prop = adapter.fromJson(responseBody.string());
+                    Propriete prop = jsonAdapter.fromJson(responseBody.string());
                     Log.i("val", "ENFIN !!!");
-                    Log.i("val", prop.toString());
+                    Log.i("val", prop.getTitre());
 
                 }
             }

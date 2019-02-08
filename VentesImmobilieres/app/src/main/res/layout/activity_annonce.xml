@@ -13,14 +13,13 @@
     tools:context=".ActivityAnnonce">
 
 
-
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -41,7 +40,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/annonce_toolbar" />
 
         <ImageView
             android:id="@+id/image_annonce"
@@ -147,5 +146,20 @@
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/text_date"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/annonce_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:title="Annonce"
+            app:theme="@style/ThemeOverlay.Randoomz.Toolbar"/>
+
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

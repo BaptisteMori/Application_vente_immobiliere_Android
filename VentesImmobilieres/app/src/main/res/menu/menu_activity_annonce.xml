@@ -1,10 +1,30 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context="fr.unicaen.info.users.a21606807.ventesimmobilires.ActivityAnnonce">
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- "Mark Favorite", should appear as action button if possible -->
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:id="@+id/action_accueil"
+        android:orderInCategory="1"
+        android:title="Menu"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_save"
+        android:orderInCategory="3"
+        android:title="Sauvegarder"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:orderInCategory="2"
+        android:title="Photo"
+        app:showAsAction="ifRoom" />
+
+    <!-- Settings, should always be in the overflow -->
+    <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+
 </menu>

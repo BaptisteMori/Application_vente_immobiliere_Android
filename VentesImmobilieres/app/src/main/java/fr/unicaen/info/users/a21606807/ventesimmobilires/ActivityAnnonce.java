@@ -1,11 +1,18 @@
 package fr.unicaen.info.users.a21606807.ventesimmobilires;
 
+import android.content.Context;
 import android.content.Intent;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -31,6 +38,10 @@ public class ActivityAnnonce extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonce);
+
+        Toolbar myToolbar = findViewById(R.id.annonce_toolbar);
+        setSupportActionBar(myToolbar);
+
 
         /*
         ImageView image = (ImageView) findViewById(R.id.image_annonce);
@@ -73,7 +84,48 @@ public class ActivityAnnonce extends AppCompatActivity {
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
     }
 
-    public void fillAnnonce(Propriete propriete) {
+    // crée le menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_activity_annonce, menu);
+        return true;
+    }
+
+    // callback déclenché lors d'une action sur le menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_accueil) {
+            this.finish();
+        } else if (id == R.id.action_camera) {
+            this.useCamera();
+        } else {
+            Context context = getApplicationContext();
+            CharSequence text = "Vous avez choisi l'item du menu " + item.toString();
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void useCamera() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, 0);
+        }
+    }
+
+        public void fillAnnonce(Propriete propriete) {
         ((TextView) findViewById(R.id.titre_annonce)).setText(propriete.getTitre());
         ((TextView) findViewById(R.id.text_prix)).setText(propriete.getPrix() + " €");
         ((TextView) findViewById(R.id.text_ville)).setText(propriete.getVille());

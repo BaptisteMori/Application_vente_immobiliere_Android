@@ -3,6 +3,7 @@
     package="fr.unicaen.info.users.a21606807.ventesimmobilires">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ActivityAnnonce" />
         <activity android:name=".ListAnnonces" />
     </application>

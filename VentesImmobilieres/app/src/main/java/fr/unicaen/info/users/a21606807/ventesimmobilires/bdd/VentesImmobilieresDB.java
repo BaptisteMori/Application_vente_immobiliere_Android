@@ -106,6 +106,12 @@ public class VentesImmobilieresDB {
         db.delete(TABLE_PROP, where, whereArgs);
     }
 
+    public static void initDatabase(Context ctx) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getWritableDatabase();
+        dbo.deleteDatabase(db);
+    }
+
     public static String listStringToString(List<String> listString, String separator) {
         String res = "";
         Iterator<String> iter = listString.iterator();

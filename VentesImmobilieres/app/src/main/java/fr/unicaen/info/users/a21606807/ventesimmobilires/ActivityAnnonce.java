@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,8 @@ public class ActivityAnnonce extends AppCompatActivity {
 
         ArrayList<String> images = new ArrayList<>();
         images.add("https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg");
+        images.add("https://www.maisons-vesta.com/2017/images/modeles-contemporains.jpg");
+        images.add("http://www.plaisancia.fr/typo3temp/_processed_/csm_maison-plaisancia-hericourt_f1763b14a9.jpg");
 
         Propriete propriete;
 
@@ -134,10 +137,15 @@ public class ActivityAnnonce extends AppCompatActivity {
         ((TextView) findViewById(R.id.text_nomVendeur)).setText(propriete.getVendeur().getPrenomNom());
         ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
         ((TextView) findViewById(R.id.text_telephoneVendeur)).setText(propriete.getVendeur().getTelephone());
-        ImageView image = (ImageView) findViewById(R.id.image_annonce);
-        Picasso.get().load(
-                propriete.getImages().get(0)
-        ).into(image);
+        //ImageView image = (ImageView) findViewById(R.id.image_annonce);
+        LinearLayout image_layout = (LinearLayout) findViewById(R.id.image_layout);
+        for (int i = 0; i < propriete.getImages().size(); i++) {
+            ImageView image = new ImageView(this);
+            Picasso.get().load(
+                    propriete.getImages().get(i)
+            ).into(image);
+            image_layout.addView(image);
+        }
     }
 
     public void getPropriete(String url) {

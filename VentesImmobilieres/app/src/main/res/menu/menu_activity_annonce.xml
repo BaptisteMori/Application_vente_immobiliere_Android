@@ -11,8 +11,21 @@
     <item
         android:id="@+id/action_save"
         android:orderInCategory="3"
-        android:title="Sauvegarder"
+        android:title="Sauvegarder sur l'appareil"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="4"
+        android:title="Supprimer de l'appareil"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_save_list"
+        android:orderInCategory="5"
+        android:title="Annonces sauvegardées"
+        app:showAsAction="ifRoom" />
+
 
     <item
         android:id="@+id/action_camera"
@@ -21,10 +34,10 @@
         android:title="Photo"
         app:showAsAction="ifRoom" />
 
-    <!-- Settings, should always be in the overflow -->
+    <!-- Settings, should always be in the overflow
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/> -->
 
 </menu>

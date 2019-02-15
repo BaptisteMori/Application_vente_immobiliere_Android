@@ -2,6 +2,8 @@ package fr.unicaen.info.users.a21606807.ventesimmobilires;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -122,13 +125,14 @@ public class ActivityAnnonce extends AppCompatActivity {
     }
 
     public void useCamera() {
+        int REQUEST_IMAGE_CAPTURE = 1;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            startActivityForResult(takePictureIntent, 0);
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
 
-        public void fillAnnonce(Propriete propriete) {
+    public void fillAnnonce(Propriete propriete) {
         ((TextView) findViewById(R.id.titre_annonce)).setText(propriete.getTitre());
         ((TextView) findViewById(R.id.text_prix)).setText(propriete.getPrix() + " €");
         ((TextView) findViewById(R.id.text_ville)).setText(propriete.getVille());
@@ -137,7 +141,6 @@ public class ActivityAnnonce extends AppCompatActivity {
         ((TextView) findViewById(R.id.text_nomVendeur)).setText(propriete.getVendeur().getPrenomNom());
         ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
         ((TextView) findViewById(R.id.text_telephoneVendeur)).setText(propriete.getVendeur().getTelephone());
-        //ImageView image = (ImageView) findViewById(R.id.image_annonce);
         LinearLayout image_layout = (LinearLayout) findViewById(R.id.image_layout);
         for (int i = 0; i < propriete.getImages().size(); i++) {
             ImageView image = new ImageView(this);

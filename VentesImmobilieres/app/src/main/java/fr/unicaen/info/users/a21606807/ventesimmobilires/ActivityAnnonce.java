@@ -2,6 +2,7 @@ package fr.unicaen.info.users.a21606807.ventesimmobilires;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -28,6 +29,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import fr.unicaen.info.users.a21606807.ventesimmobilires.bdd.VentesImmobilieresDB;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Headers;
@@ -37,6 +39,8 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 
 public class ActivityAnnonce extends AppCompatActivity {
+
+    private Propriete propriete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +69,8 @@ public class ActivityAnnonce extends AppCompatActivity {
             propriete = getIntent().getParcelableExtra("propriete");
         } else {
             propriete = new Propriete(
-                    "1",
-                    "Maison SWAG",
+                    "2",
+                    "Maison cool",
                     "Super maison trop TROP géniale !",
                     5,
                     new ArrayList<String>(),
@@ -83,9 +87,9 @@ public class ActivityAnnonce extends AppCompatActivity {
                     new Date()
             );
         }
-
+        this.propriete = propriete;
         this.fillAnnonce(propriete);
-
+        //VentesImmobilieresDB.initDatabase(this);
         this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
     }
@@ -112,14 +116,25 @@ public class ActivityAnnonce extends AppCompatActivity {
             this.finish();
         } else if (id == R.id.action_camera) {
             this.useCamera();
-        } else {
-            Context context = getApplicationContext();
-            CharSequence text = "Vous avez choisi l'item du menu " + item.toString();
-            int duration = Toast.LENGTH_SHORT;
-
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
+        } else if (id == R.id.action_save) {
+            VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
+        } else if (id == R.id.action_delete) {
+            VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+        } else if (id == R.id.action_save_list) {
+            Cursor c = VentesImmobilieresDB.lireTousPropietes(this);
+            if (c.moveToFirst()) {
+                do {
+                    String[] row = new String[c.getColumnCount()];
+                    for (int i = 0; i<c.getColumnCount(); i++) {
+                        row[i] = c.getString(i);
+                    }
+                    String res = "";
+                    for (String str : row) {
+                        res += str + " _ ";
+                    }
+                    Log.i("val", res);
+                } while (c.moveToNext());
+            }
         }
         return super.onOptionsItemSelected(item);
     }

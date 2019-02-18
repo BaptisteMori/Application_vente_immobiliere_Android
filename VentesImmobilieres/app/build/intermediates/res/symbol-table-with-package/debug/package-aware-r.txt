@@ -1031,6 +1031,7 @@ id FUNCTION
 id META
 id SHIFT
 id SYM
+id action_accueil
 id action_bar
 id action_bar_activity_content
 id action_bar_container
@@ -1038,8 +1039,10 @@ id action_bar_root
 id action_bar_spinner
 id action_bar_subtitle
 id action_bar_title
+id action_camera
 id action_container
 id action_context_bar
+id action_delete
 id action_divider
 id action_image
 id action_menu_divider
@@ -1047,7 +1050,8 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
-id action_settings
+id action_save
+id action_save_list
 id action_text
 id actions
 id activity_chooser_view_content
@@ -1055,6 +1059,7 @@ id add
 id alertTitle
 id all
 id always
+id annonce_toolbar
 id async
 id auto
 id barrier
@@ -1108,11 +1113,12 @@ id groups
 id hasard
 id home
 id homeAsUp
+id horizontalScrollView
 id icon
 id icon_group
 id ifRoom
 id image
-id image_annonce
+id image_layout
 id info
 id invisible
 id italic
@@ -1124,6 +1130,7 @@ id left
 id line1
 id line3
 id linearLayout
+id linearLayout2
 id listMode
 id list_item
 id lister
@@ -1320,7 +1327,6 @@ layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
-menu menu_activity__annonce
 menu menu_activity_annonce
 mipmap ic_launcher
 mipmap ic_launcher_round
@@ -1761,6 +1767,7 @@ style ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox
 style ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense
 style ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox
 style ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense
+style ThemeOverlay_Randoomz_Toolbar
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar

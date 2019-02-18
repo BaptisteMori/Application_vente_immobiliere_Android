@@ -36,6 +36,12 @@ public class VentesImmobilieresDB {
     public static final String V_COL_EMAIL = VentesImmobilieresContract.VendeurEntry.COL_EMAIL;
     public static final String V_COL_TEL = VentesImmobilieresContract.VendeurEntry.COL_TEL;
 
+    public static void initDatabase(Context ctx) {
+        VentesImmobilieresDBOpener mdb = new VentesImmobilieresDBOpener(ctx, VentesImmobilieresContract.DB_NAME, null, 1);
+        SQLiteDatabase db = mdb.getWritableDatabase();
+        mdb.deleteDatabase(db);
+    }
+
     public static Cursor lireTousPropietes(Context ctx) {
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getReadableDatabase();
@@ -53,7 +59,7 @@ public class VentesImmobilieresDB {
                 COL_DATE
         };
 
-        String sortOrder = COL_DATE + "DESC";
+        String sortOrder = COL_DATE + " DESC";
         Cursor cursor = db.query(
           TABLE_PROP,
           colonnes,
@@ -104,12 +110,6 @@ public class VentesImmobilieresDB {
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
         db.delete(TABLE_PROP, where, whereArgs);
-    }
-
-    public static void initDatabase(Context ctx) {
-        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
-        SQLiteDatabase db = dbo.getWritableDatabase();
-        dbo.deleteDatabase(db);
     }
 
     public static String listStringToString(List<String> listString, String separator) {

@@ -1,9 +1,13 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ListAnnonces;
 
 public class MainActivity extends AppCompatActivity {
 

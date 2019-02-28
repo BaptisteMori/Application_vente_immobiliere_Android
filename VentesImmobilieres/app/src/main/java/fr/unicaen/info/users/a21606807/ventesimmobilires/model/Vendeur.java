@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;

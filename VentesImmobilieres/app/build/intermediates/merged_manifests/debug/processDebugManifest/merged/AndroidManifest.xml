@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.MainActivity" >
+        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,9 +30,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.ActivityAnnonce"
+            android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.ListAnnonces" />
+        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.ListAnnonces" />
 
         <provider
             android:name="com.squareup.picasso.PicassoProvider"

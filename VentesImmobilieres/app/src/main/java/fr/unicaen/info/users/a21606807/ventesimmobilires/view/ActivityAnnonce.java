@@ -1,38 +1,34 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.picasso.Picasso;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
-import fr.unicaen.info.users.a21606807.ventesimmobilires.bdd.VentesImmobilieresDB;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.db.VentesImmobilieresDB;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProrieteAdapter;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -118,8 +114,10 @@ public class ActivityAnnonce extends AppCompatActivity {
             this.useCamera();
         } else if (id == R.id.action_save) {
             VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
+            this.showSnackBarMessage("Proriété enregistrée");
         } else if (id == R.id.action_delete) {
             VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+            this.showSnackBarMessage("Proriété supprimée");
         } else if (id == R.id.action_save_list) {
             Cursor c = VentesImmobilieresDB.lireTousPropietes(this);
             if (c.moveToFirst()) {
@@ -145,6 +143,14 @@ public class ActivityAnnonce extends AppCompatActivity {
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
+    }
+
+    public void showSnackBarMessage(String message) {
+        Snackbar.make(
+                findViewById(R.id.annonce),
+                ((CharSequence)message),
+                Snackbar.LENGTH_LONG
+        ).show();
     }
 
     public void fillAnnonce(Propriete propriete) {

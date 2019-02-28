@@ -1059,6 +1059,7 @@ id add
 id alertTitle
 id all
 id always
+id annonce
 id annonce_toolbar
 id async
 id auto
@@ -1172,7 +1173,6 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
-id scrollView2
 id scrollable
 id search_badge
 id search_bar

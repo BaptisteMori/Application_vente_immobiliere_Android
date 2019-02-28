@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.model;
 
 import android.util.Log;
 
@@ -8,7 +8,8 @@ import com.squareup.moshi.JsonReader;
 import com.squareup.moshi.ToJson;
 
 import java.io.IOException;
-import java.util.List;
+
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 
 public class ProrieteAdapter {
 

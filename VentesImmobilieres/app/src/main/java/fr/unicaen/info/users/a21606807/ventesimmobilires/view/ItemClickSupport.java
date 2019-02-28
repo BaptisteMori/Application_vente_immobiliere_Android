@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

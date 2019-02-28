@@ -5,50 +5,65 @@
     build-mode="COLD"
     density="xxxhdpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
+    ir-eligibility="R_CLASS_CHANGE"
     plugin-version="3.2.1"
-    timestamp="1550513163385"
+    timestamp="1551380150076"
     token="7634667597452959030"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1282" />
+        duration="1968" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="30" />
+        duration="297" />
     <task
         name="verifier"
-        duration="4" />
+        duration="141" />
 
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
     <artifact
         location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
         type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1550511330225"
+        timestamp="1551379276256"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\dep\dependencies.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
@@ -57,10 +72,25 @@
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -71,21 +101,42 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1550512592313"
+        ir-eligibility="R_CLASS_CHANGE"
+        timestamp="1551380150076"
         verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1550513163385"
-        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\Val\Desktop\cours\L3\android\Application_vente_immobiliere_Android\VentesImmobilieres\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

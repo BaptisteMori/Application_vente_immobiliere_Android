@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires.bdd;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,8 +10,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import fr.unicaen.info.users.a21606807.ventesimmobilires.Propriete;
-import fr.unicaen.info.users.a21606807.ventesimmobilires.Vendeur;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 
 public class VentesImmobilieresDB {
 

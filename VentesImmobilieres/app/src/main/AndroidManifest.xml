@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,8 +21,8 @@
         </activity>
         <activity
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:name=".ActivityAnnonce" />
-        <activity android:name=".ListAnnonces" />
+            android:name=".view.ActivityAnnonce" />
+        <activity android:name=".view.ListAnnonces" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 
 import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
@@ -6,16 +6,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce;
 
 public class ListAnnonces extends AppCompatActivity {
 

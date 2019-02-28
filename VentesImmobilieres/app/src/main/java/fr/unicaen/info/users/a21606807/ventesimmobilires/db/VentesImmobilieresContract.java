@@ -1,4 +1,4 @@
-package fr.unicaen.info.users.a21606807.ventesimmobilires.bdd;
+package fr.unicaen.info.users.a21606807.ventesimmobilires.db;
 
 import android.provider.BaseColumns;
 

@@ -3,13 +3,19 @@ package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 import android.content.Intent;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +27,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.db.VentesImmobilieresDB;
@@ -37,6 +44,7 @@ import okhttp3.ResponseBody;
 public class ActivityAnnonce extends AppCompatActivity {
 
     private Propriete propriete;
+    private List<String> remarques;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,25 @@ public class ActivityAnnonce extends AppCompatActivity {
         images.add("https://www.villadeale.fr/media/thumbnails/villatango_3_chambres_gd__032041100_1112_31102017.jpg");
         images.add("https://www.maisons-vesta.com/2017/images/modeles-contemporains.jpg");
         images.add("http://www.plaisancia.fr/typo3temp/_processed_/csm_maison-plaisancia-hericourt_f1763b14a9.jpg");
+
+
+        remarques = new ArrayList<>();
+        String remarque1 = "ouais c'était cool ok je prend";
+        String remarque2 = "bon en vrai je sais pas c'est cher c'te merde";
+        String remarque3 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
+        String remarque4 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
+        String remarque5 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
+        String remarque6 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
+        remarques.add(remarque1);
+        remarques.add(remarque2);
+        remarques.add(remarque3);
+        remarques.add(remarque4);
+        remarques.add(remarque5);
+        remarques.add(remarque6);
+        RecyclerView recycler = findViewById(R.id.recycler_view);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
+        recycler.setAdapter(remarque_adapter);
 
         Propriete propriete;
 
@@ -114,10 +141,10 @@ public class ActivityAnnonce extends AppCompatActivity {
             this.useCamera();
         } else if (id == R.id.action_save) {
             VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
-            this.showSnackBarMessage("Proriété enregistrée");
+            this.showSnackBarMessage("Propriété enregistrée");
         } else if (id == R.id.action_delete) {
             VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
-            this.showSnackBarMessage("Proriété supprimée");
+            this.showSnackBarMessage("Propriété supprimée");
         } else if (id == R.id.action_save_list) {
             Cursor c = VentesImmobilieresDB.lireTousPropietes(this);
             if (c.moveToFirst()) {
@@ -141,6 +168,11 @@ public class ActivityAnnonce extends AppCompatActivity {
         int REQUEST_IMAGE_CAPTURE = 1;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            /*String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            File photoDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            try {
+                File photoFile = File.create
+            }*/
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
     }
@@ -157,7 +189,7 @@ public class ActivityAnnonce extends AppCompatActivity {
         ((TextView) findViewById(R.id.titre_annonce)).setText(propriete.getTitre());
         ((TextView) findViewById(R.id.text_prix)).setText(propriete.getPrix() + " €");
         ((TextView) findViewById(R.id.text_ville)).setText(propriete.getVille());
-        ((TextView) findViewById(R.id.text_description)).setText(propriete.getDescription());
+        ((TextView) findViewById(R.id.description)).setText(propriete.getDescription());
         ((TextView) findViewById(R.id.text_date)).setText(propriete.getDate().toString());
         ((TextView) findViewById(R.id.text_nomVendeur)).setText(propriete.getVendeur().getPrenomNom());
         ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
@@ -165,11 +197,14 @@ public class ActivityAnnonce extends AppCompatActivity {
         LinearLayout image_layout = (LinearLayout) findViewById(R.id.image_layout);
         for (int i = 0; i < propriete.getImages().size(); i++) {
             ImageView image = new ImageView(this);
+            Log.i("val",propriete.getImages().get(i));
             Picasso.get().load(
                     propriete.getImages().get(i)
             ).into(image);
             image_layout.addView(image);
         }
+
+
     }
 
     public void getPropriete(String url) {
@@ -205,5 +240,47 @@ public class ActivityAnnonce extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public class RemarqueAdapter extends RecyclerView.Adapter<ActivityAnnonce.RemarqueViewHolder> {
+
+        private List<String> list;
+
+        public RemarqueAdapter(List<String> list) {
+            this.list = list;
+        }
+
+        @Override
+        public ActivityAnnonce.RemarqueViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
+            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_annonce_list_remarque, viewGroup,false);
+            return new ActivityAnnonce.RemarqueViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ActivityAnnonce.RemarqueViewHolder remarque_view_holder, final int position) {
+            String remarque = list.get(position);
+            remarque_view_holder.bind(remarque);
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+    }
+
+    public class RemarqueViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView remarque;
+        private ConstraintLayout layout_item;
+
+        public RemarqueViewHolder(View item_view) {
+            super(item_view);
+            this.remarque = (TextView) item_view.findViewById(R.id.description);
+            this.layout_item = (ConstraintLayout) item_view.findViewById(R.id.layout_item);
+        }
+
+        public void bind(String r){
+            this.remarque.setText(r);
+        }
     }
 }

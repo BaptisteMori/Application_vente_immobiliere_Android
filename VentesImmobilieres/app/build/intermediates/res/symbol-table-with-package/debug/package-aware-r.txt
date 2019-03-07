@@ -1050,12 +1050,14 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
+id action_remarque
 id action_save
 id action_save_list
 id action_text
 id actions
 id activity_chooser_view_content
 id add
+id ajout_remarque
 id alertTitle
 id all
 id always
@@ -1086,6 +1088,7 @@ id customPanel
 id decor_content_parent
 id default_activity_button
 id deposer
+id description
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1162,6 +1165,9 @@ id progress_circular
 id progress_horizontal
 id radio
 id recycler_view
+id remarque_multiligne
+id remarque_title
+id retour_button
 id right
 id right_icon
 id right_side
@@ -1298,9 +1304,11 @@ layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_annonce
+layout activity_annonce_list_remarque
 layout activity_annonces_list_element
 layout activity_list_annonces
 layout activity_main
+layout activity_remarque
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -217,7 +218,6 @@ public class ActivityAnnonce extends AppCompatActivity {
         LinearLayout image_layout = (LinearLayout) findViewById(R.id.image_layout);
         for (int i = 0; i < propriete.getImages().size(); i++) {
             ImageView image = new ImageView(this);
-            Log.i("val",propriete.getImages().get(i));
             Picasso.get().load(
                     propriete.getImages().get(i)
             ).into(image);

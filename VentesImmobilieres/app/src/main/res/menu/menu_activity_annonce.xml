@@ -5,25 +5,25 @@
     <item
         android:id="@+id/action_accueil"
         android:orderInCategory="1"
-        android:title="Menu"
+        android:title="@string/b_return_menu"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_save"
         android:orderInCategory="3"
-        android:title="Sauvegarder sur l'appareil"
+        android:title="@string/b_sauvegarder_annonce"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_delete"
         android:orderInCategory="4"
-        android:title="Supprimer de l'appareil"
+        android:title="@string/b_supprimer_annonce"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_save_list"
         android:orderInCategory="5"
-        android:title="Annonces sauvegardées"
+        android:title="@string/b_annonces_enregistrees"
         app:showAsAction="ifRoom" />
 
 
@@ -31,13 +31,13 @@
         android:id="@+id/action_camera"
         android:icon="@android:drawable/ic_menu_camera"
         android:orderInCategory="2"
-        android:title="Photo"
+        android:title="@string/b_photo"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_remarque"
         android:orderInCategory="6"
-        android:title="Ajouter une remarque"
+        android:title="@string/b_ajouter_remarque"
         app:showAsAction="ifRoom" />
 
     <!-- Settings, should always be in the overflow

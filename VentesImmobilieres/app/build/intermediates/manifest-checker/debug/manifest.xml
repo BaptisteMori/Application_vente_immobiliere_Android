@@ -33,6 +33,7 @@
             android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.ListAnnonces" />
+        <activity android:name="fr.unicaen.info.users.a21606807.ventesimmobilires.view.RemarqueActivity" />
 
         <provider
             android:name="com.squareup.picasso.PicassoProvider"

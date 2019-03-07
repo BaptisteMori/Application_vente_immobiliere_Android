@@ -140,7 +140,7 @@ public class ActivityAnnonce extends AppCompatActivity {
         if (id == R.id.action_accueil) {
             this.finish();
         } else if (id == R.id.action_camera) {
-            if (true) {
+            if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
                 this.useCamera();
             } else {
                 this.showSnackBarMessage("La propriété doit être enregistrée");
@@ -175,7 +175,7 @@ public class ActivityAnnonce extends AppCompatActivity {
                 } while (c.moveToNext());
             }
         } else if (id == R.id.action_remarque) {
-            if (true) {
+            if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
                 Intent intent = new Intent(this, RemarqueActivity.class);
                 startActivity(intent);
             } else {

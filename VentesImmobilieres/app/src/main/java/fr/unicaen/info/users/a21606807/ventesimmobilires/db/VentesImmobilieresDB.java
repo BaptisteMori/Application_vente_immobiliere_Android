@@ -82,17 +82,21 @@ public class VentesImmobilieresDB {
                 COL_TITRE
         };
 
+        String[] selectionArgs = new String[] {
+                propriete.getTitre()
+        };
+
         Cursor cursor = db.query(
                 TABLE_PROP,
                 colonnes,
-                null,
-                null,
+                COL_TITRE + "=?",
+                selectionArgs,
                 null,
                 null,
                 null,
                 null
         );
-        return true;
+        return cursor.getCount() == 1;
     }
 
     public static long ajouterPropriete(Context ctx, Propriete propriete) {

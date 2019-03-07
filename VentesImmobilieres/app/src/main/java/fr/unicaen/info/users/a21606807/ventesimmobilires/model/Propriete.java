@@ -19,7 +19,6 @@ public class Propriete implements Parcelable {
     private Vendeur vendeur;
     private List<String> images;
     private Long date;
-    private boolean is_on_local;
 
     //creator - used when un-parceling our parcle (creating the object)
     public static final Parcelable.Creator<Propriete> CREATOR = new Parcelable.Creator<Propriete>(){
@@ -48,7 +47,6 @@ public class Propriete implements Parcelable {
         this.vendeur = vendeur;
         this.images = images;
         this.date = date;
-        this.is_on_local = false;
     }
 
     public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,

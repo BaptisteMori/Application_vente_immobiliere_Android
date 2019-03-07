@@ -34,6 +34,12 @@
         android:title="Photo"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/action_remarque"
+        android:orderInCategory="6"
+        android:title="Ajouter une remarque"
+        app:showAsAction="ifRoom" />
+
     <!-- Settings, should always be in the overflow
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"

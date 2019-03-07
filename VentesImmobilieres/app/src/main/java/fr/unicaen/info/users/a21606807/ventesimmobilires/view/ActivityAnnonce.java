@@ -138,13 +138,27 @@ public class ActivityAnnonce extends AppCompatActivity {
         if (id == R.id.action_accueil) {
             this.finish();
         } else if (id == R.id.action_camera) {
-            this.useCamera();
+            if (this.propriete.getIsOnLocal()) {
+                this.useCamera();
+            } else {
+                this.showSnackBarMessage("La propriété doit être enregistrée");
+            }
         } else if (id == R.id.action_save) {
-            VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
-            this.showSnackBarMessage("Propriété enregistrée");
+            if (!this.propriete.getIsOnLocal()) {
+                VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
+                this.showSnackBarMessage("Propriété enregistrée");
+                this.propriete.setIsOnLocal(true);
+            } else {
+                this.showSnackBarMessage("La propriété déjà enregistrée");
+            }
         } else if (id == R.id.action_delete) {
-            VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
-            this.showSnackBarMessage("Propriété supprimée");
+            if (this.propriete.getIsOnLocal()) {
+                VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+                this.showSnackBarMessage("Propriété supprimée");
+                this.propriete.setIsOnLocal(false);
+            } else {
+                this.showSnackBarMessage("La propriété n'est pas en local");
+            }
         } else if (id == R.id.action_save_list) {
             Cursor c = VentesImmobilieresDB.lireTousPropietes(this);
             if (c.moveToFirst()) {
@@ -159,6 +173,13 @@ public class ActivityAnnonce extends AppCompatActivity {
                     }
                     Log.i("val", res);
                 } while (c.moveToNext());
+            }
+        } else if (id == R.id.action_remarque) {
+            if (this.propriete.getIsOnLocal()) {
+                Intent intent = new Intent(this, RemarqueActivity.class);
+                startActivity(intent);
+            } else {
+                this.showSnackBarMessage("La propriété doit être enregistrée");
             }
         }
         return super.onOptionsItemSelected(item);

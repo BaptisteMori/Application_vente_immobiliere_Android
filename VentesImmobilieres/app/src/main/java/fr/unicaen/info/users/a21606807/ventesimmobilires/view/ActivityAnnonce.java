@@ -57,7 +57,6 @@ public class ActivityAnnonce extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.annonce_toolbar);
         setSupportActionBar(myToolbar);
 
-
         /*
         ImageView image = (ImageView) findViewById(R.id.image_annonce);
         Picasso.get().load(
@@ -87,7 +86,6 @@ public class ActivityAnnonce extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
         recycler.setAdapter(remarque_adapter);
-
         Propriete propriete;
 
         Intent intent = getIntent();
@@ -141,24 +139,22 @@ public class ActivityAnnonce extends AppCompatActivity {
         if (id == R.id.action_accueil) {
             this.finish();
         } else if (id == R.id.action_camera) {
-            if (this.propriete.getIsOnLocal()) {
+            if (true) {
                 this.useCamera();
             } else {
                 this.showSnackBarMessage("La propriété doit être enregistrée");
             }
         } else if (id == R.id.action_save) {
-            if (!this.propriete.getIsOnLocal()) {
-                VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
+            long idProp = VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
+            if (idProp >= 0) {
                 this.showSnackBarMessage("Propriété enregistrée");
-                this.propriete.setIsOnLocal(true);
             } else {
                 this.showSnackBarMessage("La propriété déjà enregistrée");
             }
         } else if (id == R.id.action_delete) {
-            if (this.propriete.getIsOnLocal()) {
-                VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+            int hasDelete = VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+            if (hasDelete == 1) {
                 this.showSnackBarMessage("Propriété supprimée");
-                this.propriete.setIsOnLocal(false);
             } else {
                 this.showSnackBarMessage("La propriété n'est pas en local");
             }
@@ -178,7 +174,7 @@ public class ActivityAnnonce extends AppCompatActivity {
                 } while (c.moveToNext());
             }
         } else if (id == R.id.action_remarque) {
-            if (this.propriete.getIsOnLocal()) {
+            if (true) {
                 Intent intent = new Intent(this, RemarqueActivity.class);
                 startActivity(intent);
             } else {
@@ -227,8 +223,6 @@ public class ActivityAnnonce extends AppCompatActivity {
             ).into(image);
             image_layout.addView(image);
         }
-
-
     }
 
     public void getPropriete(String url) {

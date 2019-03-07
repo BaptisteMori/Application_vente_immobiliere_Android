@@ -16,7 +16,8 @@ public class VentesImmobilieresDBOpener extends SQLiteOpenHelper {
             VentesImmobilieresContract.ProprieteEntry.COL_VILLE + " varchar(50)," +
             VentesImmobilieresContract.ProprieteEntry.COL_ID_VENDEUR + " int," +
             VentesImmobilieresContract.ProprieteEntry.COL_IMAGES + " varchar(500)," +
-            VentesImmobilieresContract.ProprieteEntry.COL_DATE + " datetime" +
+            VentesImmobilieresContract.ProprieteEntry.COL_DATE + " datetime," +
+            "UNIQUE(" + VentesImmobilieresContract.ProprieteEntry.COL_TITRE + ")" +
             ");";
 
     private static final String CREATE_VENDEUR = "create table if not exists " + VentesImmobilieresContract.VendeurEntry.TABLE_NAME + "(" +

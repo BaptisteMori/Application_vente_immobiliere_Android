@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,9 +74,29 @@ public class VentesImmobilieresDB {
         return cursor;
     }
 
-    public static void ajouterPropriete(Context ctx, Propriete propriete) {
+    public static boolean proprieteInDatabase(Context ctx, Propriete propriete) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getReadableDatabase();
+
+        String[] colonnes = new String[] {
+                COL_TITRE
+        };
+
+        Cursor cursor = db.query(
+                TABLE_PROP,
+                colonnes,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return true;
+    }
+
+    public static long ajouterPropriete(Context ctx, Propriete propriete) {
         ContentValues insertValues = new ContentValues();
-        insertValues.put(COL_ID, propriete.getId());
         insertValues.put(COL_TITRE, propriete.getTitre());
         insertValues.put(COL_DESCRIPTION, propriete.getDescription());
         insertValues.put(COL_PIECES, propriete.getNombre_piece());
@@ -88,10 +109,10 @@ public class VentesImmobilieresDB {
 
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
-        db.insert(TABLE_PROP, null, insertValues);
+        return db.insert(TABLE_PROP, null, insertValues);
     }
 
-    public static void ajouterVendeur(Context ctx, Vendeur vendeur) {
+    public static long ajouterVendeur(Context ctx, Vendeur vendeur) {
         ContentValues insertValues = new ContentValues();
         insertValues.put(V_COL_ID, vendeur.getId());
         insertValues.put(V_COL_NOM, vendeur.getNom());
@@ -101,15 +122,16 @@ public class VentesImmobilieresDB {
 
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
-        db.insert(V_TABLE_NAME, null, insertValues);
+        return db.insert(V_TABLE_NAME, null, insertValues);
     }
 
-    public static void supprimerPropriete(Context ctx, Propriete propriete) {
-        String where = COL_ID + "=?";
-        String[] whereArgs = { propriete.getId() };
+    public static int supprimerPropriete(Context ctx, Propriete propriete) {
+        String where = COL_TITRE + "=?";
+        String[] whereArgs = { propriete.getTitre() };
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
-        db.delete(TABLE_PROP, where, whereArgs);
+        int hasdelete = db.delete(TABLE_PROP, where, whereArgs);
+        return hasdelete;
     }
 
     public static String listStringToString(List<String> listString, String separator) {

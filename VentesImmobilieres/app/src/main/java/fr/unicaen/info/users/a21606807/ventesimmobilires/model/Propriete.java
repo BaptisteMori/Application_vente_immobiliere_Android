@@ -146,13 +146,4 @@ public class Propriete implements Parcelable {
 
         return new Date(date);
     }
-
-    public boolean getIsOnLocal() {
-        return this.is_on_local;
-    }
-
-    public void setIsOnLocal(boolean b) {
-        this.is_on_local = b;
-    }
-
 }

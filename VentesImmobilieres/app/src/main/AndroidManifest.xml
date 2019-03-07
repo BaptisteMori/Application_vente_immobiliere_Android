@@ -23,6 +23,7 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".view.ActivityAnnonce" />
         <activity android:name=".view.ListAnnonces" />
+        <activity android:name=".view.RemarqueActivity" />
     </application>
 
 </manifest>

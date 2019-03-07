@@ -18,7 +18,6 @@ import java.util.List;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
-import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce;
 
 public class ListAnnonces extends AppCompatActivity {
 

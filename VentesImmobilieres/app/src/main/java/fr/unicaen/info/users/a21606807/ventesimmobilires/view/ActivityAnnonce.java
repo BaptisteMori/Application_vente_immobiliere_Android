@@ -22,9 +22,11 @@ import android.widget.TextView;
 
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+import com.squareup.moshi.Types;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,7 +34,8 @@ import java.util.List;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.db.VentesImmobilieresDB;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
-import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProrieteAdapter;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProprieteAdapter;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProprieteResponseAdapter;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -248,15 +251,15 @@ public class ActivityAnnonce extends AppCompatActivity {
                         throw new IOException("Unexpected HTTP code " + response);
                     }
 
-                    Moshi moshi = new Moshi.Builder().add(new ProrieteAdapter()).build();
-
+                    Moshi moshi = new Moshi.Builder().add(new ProprieteResponseAdapter()).add(new ProprieteAdapter()).build();
+                    Type type = Types.newParameterizedType(List.class, Propriete.class);
                     Log.i("val", "PASSAGE ICI");
-                    JsonAdapter<Propriete> jsonAdapter = moshi.adapter(Propriete.class);
+                    JsonAdapter<ArrayList<Propriete>> jsonAdapter = moshi.adapter(type);
                     Log.i("val", "PASSAGE LA !!!!");
 
-                    Propriete prop = jsonAdapter.fromJson(responseBody.string());
+                    ArrayList<Propriete> responseJson = jsonAdapter.fromJson(responseBody.string());
                     Log.i("val", "ENFIN !!!");
-                    Log.i("val", prop.getTitre());
+                    Log.i("val", ""+responseJson);
 
                 }
             }

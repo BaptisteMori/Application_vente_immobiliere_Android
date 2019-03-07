@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
-import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ActivityAnnonce;
-import fr.unicaen.info.users.a21606807.ventesimmobilires.view.ListAnnonces;
 
 public class MainActivity extends AppCompatActivity {
 

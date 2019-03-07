@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 
-public class ProrieteAdapter {
+public class ProprieteAdapter {
 
     @ToJson
     public String toJson(Propriete propriete) {

@@ -31,7 +31,9 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -119,7 +121,7 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         }
         this.propriete = propriete;
         this.fillAnnonce(propriete);
-        VentesImmobilieresDB.initDatabase(this);
+        //VentesImmobilieresDB.initDatabase(this);
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
 
@@ -227,6 +229,10 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                 Uri photoURI = FileProvider.getUriForFile(this,"fr.unicaen.info.users.a21606807.ventesimmobilires.android.fileprovider",photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                this.propriete.addImages(this.currentPhotoPath);
+                Log.i("val",""+this.propriete.getImages());
+                this.galleryAddPic();
+                this.fillAnnonce(this.propriete);
             }
         }
     }
@@ -242,9 +248,16 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                 ".jpg",
                 storageDir
         );
-
-        this.currentPhotoPath = image.getAbsolutePath();
+        this.currentPhotoPath = "file://"+image.getAbsolutePath();
         return image;
+    }
+
+    public void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(this.currentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 
     public void showSnackBarMessage(String message) {
@@ -269,9 +282,18 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         if (listImages.size() > 0) {
             for (int i = 0; i < propriete.getImages().size(); i++) {
                 ImageView image = new ImageView(this);
-                Picasso.get().load(
-                        propriete.getImages().get(i)
-                ).into(image);
+                String[] tmp = propriete.getImages().get(i).split(":");
+                if (tmp[0].equals("file")) {
+                    File file = new File(this.currentPhotoPath);
+                    /*COMMENT QU'ON FAIT POUR LES IMAGES EN LOCAL*/
+                    Picasso.get().load(
+                            file
+                    ).into(image);
+                } else {
+                    Picasso.get().load(
+                            propriete.getImages().get(i)
+                    ).into(image);
+                }
                 image_layout.addView(image);
             }
         } else {

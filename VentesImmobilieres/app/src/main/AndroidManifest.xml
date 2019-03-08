@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -24,6 +25,17 @@
             android:name=".view.ActivityAnnonce" />
         <activity android:name=".view.ListAnnonces" />
         <activity android:name=".view.RemarqueActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="fr.unicaen.info.users.a21606807.ventesimmobilires.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"></meta-data>
+        </provider>
+
     </application>
 
 </manifest>

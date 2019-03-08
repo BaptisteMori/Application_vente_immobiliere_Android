@@ -2,9 +2,12 @@ package fr.unicaen.info.users.a21606807.ventesimmobilires.view;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,8 +29,10 @@ import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -114,7 +119,7 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         }
         this.propriete = propriete;
         this.fillAnnonce(propriete);
-        //VentesImmobilieresDB.initDatabase(this);
+        VentesImmobilieresDB.initDatabase(this);
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
 
@@ -208,17 +213,38 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         return super.onOptionsItemSelected(item);
     }
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     public void useCamera() {
-        int REQUEST_IMAGE_CAPTURE = 1;
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            /*String time = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            File photoDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+            File photoFile = null;
             try {
-                File photoFile = File.create
-            }*/
-            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+                photoFile = this.createImageFile();
+            } catch (IOException e) {
+                this.showSnackBarMessage("Problème lors de l'enregistrement de la photo");
+            }
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,"fr.unicaen.info.users.a21606807.ventesimmobilires.android.fileprovider",photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+            }
         }
+    }
+
+    private String currentPhotoPath;
+
+    public File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_"+timeStamp+"_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        this.currentPhotoPath = image.getAbsolutePath();
+        return image;
     }
 
     public void showSnackBarMessage(String message) {

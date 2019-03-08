@@ -45,7 +45,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-public class ActivityAnnonce extends AppCompatActivity {
+public class ActivityAnnonce extends AppCompatActivity implements DialogListener {
 
     private Propriete propriete;
     private List<String> remarques;
@@ -108,15 +108,38 @@ public class ActivityAnnonce extends AppCompatActivity {
                             "Boby@gmail.com",
                             "0215653289"
                     ),
-                    images,
+                    new ArrayList<String>(),
                     new Date()
             );
         }
         this.propriete = propriete;
         this.fillAnnonce(propriete);
         //VentesImmobilieresDB.initDatabase(this);
-        this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
+        //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
+
+    } // FIN ONCREATE
+
+
+    @Override
+    public void onPositiveButton() {
+        int hasDelete = VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
+        Log.i("val", "value = " + hasDelete);
+        if (hasDelete > 0) {
+            this.showSnackBarMessage("Propriété supprimée");
+        } else {
+            this.showSnackBarMessage("La propriété n'a pas été supprimée");
+        }
+    }
+
+    @Override
+    public void onNegativeButton() {
+
+    }
+
+    public void openDialog() {
+        DeleteProprieteDialog dialog = new DeleteProprieteDialog();
+        dialog.show(getSupportFragmentManager(), "DeleteProprieteDialog");
     }
 
     // crée le menu
@@ -126,6 +149,7 @@ public class ActivityAnnonce extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activity_annonce, menu);
         return true;
     }
+
 
     // callback déclenché lors d'une action sur le menu
     @Override
@@ -150,12 +174,11 @@ public class ActivityAnnonce extends AppCompatActivity {
             if (idProp >= 0) {
                 this.showSnackBarMessage("Propriété enregistrée");
             } else {
-                this.showSnackBarMessage("La propriété déjà enregistrée");
+                this.showSnackBarMessage("La propriété est déjà enregistrée");
             }
         } else if (id == R.id.action_delete) {
-            int hasDelete = VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
-            if (hasDelete == 1) {
-                this.showSnackBarMessage("Propriété supprimée");
+            if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
+                this.openDialog();
             } else {
                 this.showSnackBarMessage("La propriété n'est pas en local");
             }
@@ -216,10 +239,19 @@ public class ActivityAnnonce extends AppCompatActivity {
         ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
         ((TextView) findViewById(R.id.text_telephoneVendeur)).setText(propriete.getVendeur().getTelephone());
         LinearLayout image_layout = (LinearLayout) findViewById(R.id.image_layout);
-        for (int i = 0; i < propriete.getImages().size(); i++) {
+        List<String> listImages = propriete.getImages();
+        if (listImages.size() > 0) {
+            for (int i = 0; i < propriete.getImages().size(); i++) {
+                ImageView image = new ImageView(this);
+                Picasso.get().load(
+                        propriete.getImages().get(i)
+                ).into(image);
+                image_layout.addView(image);
+            }
+        } else {
             ImageView image = new ImageView(this);
             Picasso.get().load(
-                    propriete.getImages().get(i)
+                    "https://cdn2.iconfinder.com/data/icons/lil-buildings/119/Building-10-512.png"
             ).into(image);
             image_layout.addView(image);
         }

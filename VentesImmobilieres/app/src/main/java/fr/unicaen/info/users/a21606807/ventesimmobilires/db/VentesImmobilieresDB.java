@@ -129,6 +129,10 @@ public class VentesImmobilieresDB {
         return db.insert(V_TABLE_NAME, null, insertValues);
     }
 
+    public static void ajouterImages(Context ctx, Propriete propriete, String pathImage) {
+
+    }
+
     public static int supprimerPropriete(Context ctx, Propriete propriete) {
         String where = COL_TITRE + "=?";
         String[] whereArgs = { propriete.getTitre() };

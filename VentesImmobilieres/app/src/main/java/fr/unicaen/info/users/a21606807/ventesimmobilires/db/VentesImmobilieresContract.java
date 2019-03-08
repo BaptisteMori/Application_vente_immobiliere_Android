@@ -18,6 +18,7 @@ public class VentesImmobilieresContract {
         public static final String COL_ID_VENDEUR = "id_vendeur";
         public static final String COL_IMAGES = "images";
         public static final String COL_DATE = "date";
+        public static final String COL_REMARQUES = "remarques";
     }
 
     public static class VendeurEntry implements BaseColumns {

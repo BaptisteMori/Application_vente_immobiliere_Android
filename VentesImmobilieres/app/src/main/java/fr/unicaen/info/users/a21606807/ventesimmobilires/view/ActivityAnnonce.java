@@ -208,8 +208,9 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         } else if (id == R.id.action_remarque) {
             if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
                 Intent intent = new Intent(this, RemarqueActivity.class);
-                intent.putExtra("id_propriete", propriete.getId());
+                intent.putExtra("propriete", propriete);
                 startActivity(intent);
+                finish();
             } else {
                 this.showSnackBarMessage("La propriété doit être enregistrée");
             }
@@ -275,7 +276,9 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         ((TextView) findViewById(R.id.text_prix)).setText(propriete.getPrix() + " €");
         ((TextView) findViewById(R.id.text_ville)).setText(propriete.getVille());
         ((TextView) findViewById(R.id.description)).setText(propriete.getDescription());
-        ((TextView) findViewById(R.id.text_date)).setText(propriete.getDate().toString());
+        Date date = propriete.getDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        ((TextView) findViewById(R.id.text_date)).setText(sdf.format(date));
         ((TextView) findViewById(R.id.text_nomVendeur)).setText(propriete.getVendeur().getPrenomNom());
         ((TextView) findViewById(R.id.text_mailVendeur)).setText(propriete.getVendeur().getEmail());
         ((TextView) findViewById(R.id.text_telephoneVendeur)).setText(propriete.getVendeur().getTelephone());
@@ -305,36 +308,5 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
             ).into(image);
             image_layout.addView(image);
         }
-    }
-
-    public void getPropriete(String url) {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                try (ResponseBody responseBody = response.body()) {
-                    if (!response.isSuccessful()) {
-                        throw new IOException("Unexpected HTTP code " + response);
-                    }
-                    Log.i("val","ok bonjour");
-                    Moshi moshi = new Moshi.Builder().add(new ProprieteResponseAdapter()).build();
-                    JsonAdapter<ProprieteResponse> jsonAdapter = moshi.adapter(ProprieteResponse.class);
-
-                    ProprieteResponse responseJson = jsonAdapter.fromJson(responseBody.string());
-                    Log.i("val", ""+responseJson);
-
-                }
-            }
-        });
     }
 }

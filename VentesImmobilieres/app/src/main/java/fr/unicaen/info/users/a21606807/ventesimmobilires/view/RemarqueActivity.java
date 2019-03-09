@@ -10,37 +10,34 @@ import android.widget.EditText;
 
 import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.db.VentesImmobilieresDB;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 
 public class RemarqueActivity extends AppCompatActivity {
 
-    String idPropriete;
+    Propriete propriete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remarque);
         Intent intent = getIntent();
-        idPropriete = intent.getStringExtra("id_propriete");
+        propriete = intent.getParcelableExtra("propriete");
     }
 
     public void retour(View v) {
-
-        //this.finish();
-        Cursor c = VentesImmobilieresDB.lireRemarquePropriete(this, idPropriete);
-
-        if (c.moveToFirst()) {
-            do {
-                String id = c.getString(0);
-                Log.i("val", "id = " + id);
-            } while (c.moveToNext());
-        } else {
-            Log.i("val", "PAS DE REMARQUE");
-        }
+        this.restartActivityAnnonce();
     }
 
     public void enregistrer(View v) {
         String remarque = ((EditText) findViewById(R.id.remarque_multiligne)).getText().toString();
-        long nb = VentesImmobilieresDB.ajouterRemarque(this, idPropriete, remarque);
+        long nb = VentesImmobilieresDB.ajouterRemarque(this, propriete.getId(), remarque);
+        this.restartActivityAnnonce();
+    }
+
+    public void restartActivityAnnonce() {
+        Intent intent = new Intent(this, ActivityAnnonce.class);
+        intent.putExtra("propriete", propriete);
+        startActivity(intent);
         finish();
     }
 }

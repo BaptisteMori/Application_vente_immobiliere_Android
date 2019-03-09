@@ -19,49 +19,38 @@ public class ProprieteResponseAdapter {
     }
 
     @FromJson
-    public ArrayList<Propriete> fromJson(JsonReader reader, JsonAdapter<Propriete> delegate) throws IOException {
-        //Type type = Types.newParameterizedType(List.class, Propriete.class);
+    public ProprieteResponse fromJson(JsonReader reader, JsonAdapter<Propriete> delegate) throws IOException {
+        ProprieteResponse result = null;
 
         ArrayList<Propriete> p = new ArrayList<>();
-
-        Log.i("val","ouais ça passe ici");
         reader.beginObject();
 
         boolean success = false;
         JsonReader response = null;
 
-        Log.i("val", "debut parser");
         while (reader.hasNext()) {
             String name = reader.nextName();
-            Log.i("val","name "+name);
             if (name.equals("success")) {
                 success = reader.nextBoolean();
                 Log.i("val",""+success);
             } else if (name.equals("response")) {
                 //response = reader.peekJson();
-
                 reader.beginArray();
-                Log.i("val","bonsoir begin array");
                 while (reader.hasNext()){
-                    Log.i("val","bonsoir begin array");
-                    Moshi moshi = new Moshi.Builder().add(new ProprieteAdapter()).build();
-                    JsonAdapter<Propriete> jsonAdapter = moshi.adapter(Propriete.class);
-                    p.add(jsonAdapter.fromJson(reader));
+                    p.add(delegate.fromJson(reader));
                 }
                 reader.endArray();
-
-
-                Log.i("val", "peekjson");
-                return p;
+                reader.endObject();
+                result=new ProprieteResponse(success,p);
+                return result;
             } else {
                 throw new IOException("Response contient des données non conformes");
             }
-            Log.i("val","has next "+reader.hasNext());
         }
-        Log.i("val","c'est la mer qui prend l'homme");
         // fermer le reader
         reader.endObject();
-        return p;
+
+        return result;
     }
 
 }

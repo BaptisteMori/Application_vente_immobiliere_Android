@@ -43,6 +43,7 @@ import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.db.VentesImmobilieresDB;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProprieteAdapter;
+import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProprieteResponse;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.ProprieteResponseAdapter;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 import okhttp3.Call;
@@ -325,15 +326,11 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected HTTP code " + response);
                     }
+                    Log.i("val","ok bonjour");
+                    Moshi moshi = new Moshi.Builder().add(new ProprieteResponseAdapter()).build();
+                    JsonAdapter<ProprieteResponse> jsonAdapter = moshi.adapter(ProprieteResponse.class);
 
-                    Moshi moshi = new Moshi.Builder().add(new ProprieteResponseAdapter()).add(new ProprieteAdapter()).build();
-                    Type type = Types.newParameterizedType(List.class, Propriete.class);
-                    Log.i("val", "PASSAGE ICI");
-                    JsonAdapter<ArrayList<Propriete>> jsonAdapter = moshi.adapter(type);
-                    Log.i("val", "PASSAGE LA !!!!");
-
-                    ArrayList<Propriete> responseJson = jsonAdapter.fromJson(responseBody.string());
-                    Log.i("val", "ENFIN !!!");
+                    ProprieteResponse responseJson = jsonAdapter.fromJson(responseBody.string());
                     Log.i("val", ""+responseJson);
 
                 }

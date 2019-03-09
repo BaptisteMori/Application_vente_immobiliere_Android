@@ -21,16 +21,14 @@ public class ProprieteAdapter {
     @FromJson
     public Propriete fromJson(JsonReader reader, JsonAdapter<Propriete> delegate) throws IOException {
         Propriete result = null;
-
         // démarrer le parsing du Json
         reader.beginObject();
-        Log.i("val", "debut parser");
+        // tant que dans le reader il y a d'autre caractère
         while (reader.hasNext()) {
             // récupérer le nom de la clé
             String name = reader.nextName();
             if (name.equals("success")) {
                 boolean success = reader.nextBoolean();
-                Log.i("JML", "Success vaut " + success);
                 if (!success) {
                     // @todo : récupérer le message d'erreur et le donner à l'exception
                     // @todo : créer une exception spécifique pour la distinguer des IOException
@@ -38,8 +36,7 @@ public class ProprieteAdapter {
                 }
             } else if (name.equals("response")) {
                 // déléguer l'extraction à l'adapteur qui transforme du Json en Personne
-
-                result=delegate.fromJson(reader);
+                result = delegate.fromJson(reader);
             } else {
                 // dans notre cas on ne devrait pas avoir d'autres clés que success et response dans le Json
                 throw new IOException("Response contient des données non conformes");

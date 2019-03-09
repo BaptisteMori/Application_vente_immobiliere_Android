@@ -1,18 +1,18 @@
 package fr.unicaen.info.users.a21606807.ventesimmobilires.model;
 
-import com.squareup.moshi.JsonReader;
+import java.util.ArrayList;
 
 public class ProprieteResponse {
 
     private boolean success;
-    private JsonReader response;
+    private ArrayList<Propriete> response;
 
-    public ProprieteResponse(boolean success, JsonReader response){
+    public ProprieteResponse(boolean success, ArrayList<Propriete> response){
         this.success=success;
         this.response=response;
     }
 
-    public JsonReader getResponse(){
+    public ArrayList<Propriete> getResponse(){
         return this.response;
     }
 
@@ -20,4 +20,8 @@ public class ProprieteResponse {
         return this.success;
     }
 
+    @Override
+    public String toString() {
+        return this.response.get(0).getTitre();
+    }
 }

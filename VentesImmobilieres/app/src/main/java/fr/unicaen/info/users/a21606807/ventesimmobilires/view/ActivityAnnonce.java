@@ -56,6 +56,7 @@ import okhttp3.ResponseBody;
 public class ActivityAnnonce extends AppCompatActivity implements DialogListener {
 
     private Propriete propriete;
+    private RecyclerView recycler;
     private List<String> remarques;
 
     @Override
@@ -111,11 +112,9 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                 Log.i("val", "id = " + remarque);
                 remarques.add(remarque);
             } while (c.moveToNext());
-        } else {
-            Log.i("val", "PAS DE REMARQUE");
         }
 
-        RecyclerView recycler = findViewById(R.id.recycler_view);
+        recycler = findViewById(R.id.recycler_view);
         recycler.setLayoutManager(new LinearLayoutManager(this));
         RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
         recycler.setAdapter(remarque_adapter);
@@ -132,8 +131,9 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
     @Override
     public void onPositiveButton() {
         int hasDelete = VentesImmobilieresDB.supprimerPropriete(this, this.propriete);
-        Log.i("val", "value = " + hasDelete);
         if (hasDelete > 0) {
+            VentesImmobilieresDB.supprimerRemarquePropriete(this, this.propriete);
+            this.fillRemarque();
             this.showSnackBarMessage("Propriété supprimée");
         } else {
             this.showSnackBarMessage("La propriété n'a pas été supprimée");
@@ -143,6 +143,20 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
     @Override
     public void onNegativeButton() {
 
+    }
+
+    public void fillRemarque() {
+        remarques = new ArrayList<>();
+        Cursor c = VentesImmobilieresDB.lireRemarquePropriete(this, propriete);
+        if (c.moveToFirst()) {
+            do {
+                String remarque = c.getString(0);
+                remarques.add(remarque);
+            } while (c.moveToNext());
+        }
+        RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
+        recycler.setAdapter(remarque_adapter);
+        recycler.refreshDrawableState();
     }
 
     public void openDialog() {

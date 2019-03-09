@@ -181,7 +181,7 @@ public class VentesImmobilieresDB {
         String[] whereArgs = { propriete.getId() };
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
-        return db.delete(TABLE_PROP, where, whereArgs);
+        return db.delete(R_TABLE_NAME, where, whereArgs);
     }
 
     public static void ajouterImages(Context ctx, Propriete propriete, String pathImage) {

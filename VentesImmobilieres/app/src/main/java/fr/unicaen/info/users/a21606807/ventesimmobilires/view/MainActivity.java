@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openListAnnonces(View v) {
-        Intent intent = new Intent(this, ListAnnonces.class);
+        Intent intent = new Intent(this, ListAnnoncesActivity.class);
         startActivity(intent);
     }
 }

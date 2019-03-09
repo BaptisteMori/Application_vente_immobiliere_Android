@@ -19,7 +19,7 @@ import fr.unicaen.info.users.a21606807.ventesimmobilires.R;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Propriete;
 import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 
-public class ListAnnonces extends AppCompatActivity {
+public class ListAnnoncesActivity extends AppCompatActivity {
 
     private List<Propriete> propriete_list;
 
@@ -109,7 +109,7 @@ public class ListAnnonces extends AppCompatActivity {
         this.propriete_list.add(propriete4);
         RecyclerView recycler = findViewById(R.id.recycler_view);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        AnnonceAdapter annonce_adapter = new AnnonceAdapter(this.propriete_list);
+        AnnonceAdapter annonce_adapter = new AnnonceAdapter(this, this.propriete_list);
         recycler.setAdapter(annonce_adapter);
     }
 
@@ -119,57 +119,6 @@ public class ListAnnonces extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public class AnnonceViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView title;
-        private TextView description;
-        private ConstraintLayout layout_item;
-
-        public AnnonceViewHolder(View item_view) {
-            super(item_view);
-            this.title = (TextView) item_view.findViewById(R.id.text_title);
-            this.description = (TextView) item_view.findViewById(R.id.text_description);
-            this.layout_item = (ConstraintLayout) item_view.findViewById(R.id.layout_item);
-        }
-
-        public void bind(Propriete propriete){
-            this.title.setText(propriete.getTitre());
-            this.description.setText(propriete.getDescription());
-        }
-    }
-
-    public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceViewHolder> {
-
-        private List<Propriete> list;
-
-        public AnnonceAdapter(List<Propriete> list) {
-            this.list = list;
-        }
-
-        @Override
-        public AnnonceViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_annonces_list_element, viewGroup,false);
-            return new AnnonceViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(AnnonceViewHolder annonce_view_holder, final int position) {
-            Propriete propriete = list.get(position);
-            annonce_view_holder.bind(propriete);
-
-            annonce_view_holder.layout_item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    openAnnonce(view, list.get(position));
-                }
-            });
-        }
-
-        @Override
-        public int getItemCount() {
-            return list.size();
-        }
-    }
 }
 
 

@@ -16,26 +16,30 @@ import fr.unicaen.info.users.a21606807.ventesimmobilires.model.Vendeur;
 
 public class VentesImmobilieresDB {
 
-    public static final String DB_NAME = VentesImmobilieresContract.DB_NAME;
+    private static final String DB_NAME = VentesImmobilieresContract.DB_NAME;
 
-    public static final String TABLE_PROP = VentesImmobilieresContract.ProprieteEntry.TABLE_NAME;
-    public static final String COL_ID = VentesImmobilieresContract.ProprieteEntry.COL_ID;
-    public static final String COL_TITRE = VentesImmobilieresContract.ProprieteEntry.COL_TITRE;
-    public static final String COL_DESCRIPTION = VentesImmobilieresContract.ProprieteEntry.COL_DESCRIPTION;
-    public static final String COL_PIECES = VentesImmobilieresContract.ProprieteEntry.COL_PIECES;
-    public static final String COL_CARACTERISTIQUES = VentesImmobilieresContract.ProprieteEntry.COL_CARACTERISTIQUES;
-    public static final String COL_PRIX = VentesImmobilieresContract.ProprieteEntry.COL_PRIX;
-    public static final String COL_VILLE = VentesImmobilieresContract.ProprieteEntry.COL_VILLE;
-    public static final String COL_ID_VENDEUR = VentesImmobilieresContract.ProprieteEntry.COL_ID_VENDEUR;
-    public static final String COL_IMAGES = VentesImmobilieresContract.ProprieteEntry.COL_IMAGES;
-    public static final String COL_DATE = VentesImmobilieresContract.ProprieteEntry.COL_DATE;
+    private static final String TABLE_PROP = VentesImmobilieresContract.ProprieteEntry.TABLE_NAME;
+    private static final String COL_ID = VentesImmobilieresContract.ProprieteEntry.COL_ID;
+    private static final String COL_TITRE = VentesImmobilieresContract.ProprieteEntry.COL_TITRE;
+    private static final String COL_DESCRIPTION = VentesImmobilieresContract.ProprieteEntry.COL_DESCRIPTION;
+    private static final String COL_PIECES = VentesImmobilieresContract.ProprieteEntry.COL_PIECES;
+    private static final String COL_CARACTERISTIQUES = VentesImmobilieresContract.ProprieteEntry.COL_CARACTERISTIQUES;
+    private static final String COL_PRIX = VentesImmobilieresContract.ProprieteEntry.COL_PRIX;
+    private static final String COL_VILLE = VentesImmobilieresContract.ProprieteEntry.COL_VILLE;
+    private static final String COL_ID_VENDEUR = VentesImmobilieresContract.ProprieteEntry.COL_ID_VENDEUR;
+    private static final String COL_IMAGES = VentesImmobilieresContract.ProprieteEntry.COL_IMAGES;
+    private static final String COL_DATE = VentesImmobilieresContract.ProprieteEntry.COL_DATE;
 
-    public static final String V_TABLE_NAME = VentesImmobilieresContract.VendeurEntry.TABLE_NAME;
-    public static final String V_COL_ID = VentesImmobilieresContract.VendeurEntry.COL_ID;
-    public static final String V_COL_NOM = VentesImmobilieresContract.VendeurEntry.COL_NOM;
-    public static final String V_COL_PRENOM = VentesImmobilieresContract.VendeurEntry.COL_PRENOM;
-    public static final String V_COL_EMAIL = VentesImmobilieresContract.VendeurEntry.COL_EMAIL;
-    public static final String V_COL_TEL = VentesImmobilieresContract.VendeurEntry.COL_TEL;
+    private static final String V_TABLE_NAME = VentesImmobilieresContract.VendeurEntry.TABLE_NAME;
+    private static final String V_COL_ID = VentesImmobilieresContract.VendeurEntry.COL_ID;
+    private static final String V_COL_NOM = VentesImmobilieresContract.VendeurEntry.COL_NOM;
+    private static final String V_COL_PRENOM = VentesImmobilieresContract.VendeurEntry.COL_PRENOM;
+    private static final String V_COL_EMAIL = VentesImmobilieresContract.VendeurEntry.COL_EMAIL;
+    private static final String V_COL_TEL = VentesImmobilieresContract.VendeurEntry.COL_TEL;
+
+    private static final String R_TABLE_NAME = VentesImmobilieresContract.RemarqueEntry.TABLE_NAME;
+    private static final String R_COL_ID_PROP = VentesImmobilieresContract.RemarqueEntry.COL_ID_PROP;
+    private static final String R_COL_REMARQUE = VentesImmobilieresContract.RemarqueEntry.COL_REMARQUE;
 
     public static void initDatabase(Context ctx) {
         VentesImmobilieresDBOpener mdb = new VentesImmobilieresDBOpener(ctx, VentesImmobilieresContract.DB_NAME, null, 1);
@@ -129,6 +133,57 @@ public class VentesImmobilieresDB {
         return db.insert(V_TABLE_NAME, null, insertValues);
     }
 
+    public static long ajouterRemarque(Context ctx, String idPropriete, String remarque) {
+        ContentValues insertValues = new ContentValues();
+        insertValues.put(R_COL_ID_PROP, idPropriete);
+        insertValues.put(R_COL_REMARQUE, remarque);
+
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getWritableDatabase();
+        return db.insert(R_TABLE_NAME, null, insertValues);
+    }
+
+    public static long ajouterRemarque(Context ctx, Propriete propriete, String remarque) {
+        return ajouterRemarque(ctx, propriete.getId(), remarque);
+    }
+
+    public static Cursor lireRemarquePropriete(Context ctx, String idPropriete) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getReadableDatabase();
+
+        String[] colonnes = new String[] {
+                R_COL_REMARQUE
+        };
+
+        String[] selectionArgs = new String[] {
+                idPropriete
+        };
+
+        Cursor cursor = db.query(
+                R_TABLE_NAME,
+                colonnes,
+                R_COL_ID_PROP + "=?",
+                selectionArgs,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
+    public static Cursor lireRemarquePropriete(Context ctx, Propriete propriete) {
+        return lireRemarquePropriete(ctx, propriete.getId());
+    }
+
+    public static long supprimerRemarquePropriete(Context ctx, Propriete propriete) {
+        String where = R_COL_ID_PROP + "=?";
+        String[] whereArgs = { propriete.getId() };
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getWritableDatabase();
+        return db.delete(TABLE_PROP, where, whereArgs);
+    }
+
     public static void ajouterImages(Context ctx, Propriete propriete, String pathImage) {
 
     }
@@ -138,8 +193,7 @@ public class VentesImmobilieresDB {
         String[] whereArgs = { propriete.getTitre() };
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getWritableDatabase();
-        int hasdelete = db.delete(TABLE_PROP, where, whereArgs);
-        return hasdelete;
+        return db.delete(TABLE_PROP, where, whereArgs);
     }
 
     public static String listStringToString(List<String> listString, String separator) {

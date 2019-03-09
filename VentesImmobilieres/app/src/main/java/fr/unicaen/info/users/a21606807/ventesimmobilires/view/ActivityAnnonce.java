@@ -76,26 +76,7 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         images.add("https://www.maisons-vesta.com/2017/images/modeles-contemporains.jpg");
         images.add("http://www.plaisancia.fr/typo3temp/_processed_/csm_maison-plaisancia-hericourt_f1763b14a9.jpg");
 
-
-        remarques = new ArrayList<>();
-        String remarque1 = "ouais c'était cool ok je prend";
-        String remarque2 = "bon en vrai je sais pas c'est cher c'te merde";
-        String remarque3 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
-        String remarque4 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
-        String remarque5 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
-        String remarque6 = "blablabla bon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merdebon en vrai je sais pas c'est cher c'te merde";
-        remarques.add(remarque1);
-        remarques.add(remarque2);
-        remarques.add(remarque3);
-        remarques.add(remarque4);
-        remarques.add(remarque5);
-        remarques.add(remarque6);
-        RecyclerView recycler = findViewById(R.id.recycler_view);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
-        recycler.setAdapter(remarque_adapter);
         Propriete propriete;
-
         Intent intent = getIntent();
         if (intent.getParcelableExtra("propriete") != null) {
             propriete = getIntent().getParcelableExtra("propriete");
@@ -120,6 +101,25 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
             );
         }
         this.propriete = propriete;
+
+        remarques = new ArrayList<>();
+        Cursor c = VentesImmobilieresDB.lireRemarquePropriete(this, propriete);
+        if (c.moveToFirst()) {
+            do {
+                String remarque = c.getString(0);
+                Log.i("val", "id = " + remarque);
+                remarques.add(remarque);
+            } while (c.moveToNext());
+        } else {
+            Log.i("val", "PAS DE REMARQUE");
+        }
+
+        RecyclerView recycler = findViewById(R.id.recycler_view);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        RemarqueAdapter remarque_adapter = new RemarqueAdapter(remarques);
+        recycler.setAdapter(remarque_adapter);
+
+
         this.fillAnnonce(propriete);
         //VentesImmobilieresDB.initDatabase(this);
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
@@ -207,6 +207,7 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         } else if (id == R.id.action_remarque) {
             if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
                 Intent intent = new Intent(this, RemarqueActivity.class);
+                intent.putExtra("id_propriete", propriete.getId());
                 startActivity(intent);
             } else {
                 this.showSnackBarMessage("La propriété doit être enregistrée");
@@ -338,47 +339,5 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                 }
             }
         });
-    }
-
-    public class RemarqueAdapter extends RecyclerView.Adapter<ActivityAnnonce.RemarqueViewHolder> {
-
-        private List<String> list;
-
-        public RemarqueAdapter(List<String> list) {
-            this.list = list;
-        }
-
-        @Override
-        public ActivityAnnonce.RemarqueViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
-            View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_annonce_list_remarque, viewGroup,false);
-            return new ActivityAnnonce.RemarqueViewHolder(view);
-        }
-
-        @Override
-        public void onBindViewHolder(ActivityAnnonce.RemarqueViewHolder remarque_view_holder, final int position) {
-            String remarque = list.get(position);
-            remarque_view_holder.bind(remarque);
-        }
-
-        @Override
-        public int getItemCount() {
-            return list.size();
-        }
-    }
-
-    public class RemarqueViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView remarque;
-        private ConstraintLayout layout_item;
-
-        public RemarqueViewHolder(View item_view) {
-            super(item_view);
-            this.remarque = (TextView) item_view.findViewById(R.id.description);
-            this.layout_item = (ConstraintLayout) item_view.findViewById(R.id.layout_item);
-        }
-
-        public void bind(String r){
-            this.remarque.setText(r);
-        }
     }
 }

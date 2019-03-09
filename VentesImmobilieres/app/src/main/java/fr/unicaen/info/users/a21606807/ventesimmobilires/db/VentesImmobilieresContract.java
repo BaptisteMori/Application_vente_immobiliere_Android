@@ -4,7 +4,7 @@ import android.provider.BaseColumns;
 
 public class VentesImmobilieresContract {
 
-    public static  final String DB_NAME = "Ventes_Immobilieres";
+    public static final String DB_NAME = "Ventes_Immobilieres";
 
     public static class ProprieteEntry implements BaseColumns {
         public static final String TABLE_NAME = "Propriete";
@@ -28,5 +28,11 @@ public class VentesImmobilieresContract {
         public static final String COL_PRENOM = "prenom";
         public static final String COL_EMAIL = "email";
         public static final String COL_TEL = "telephone";
+    }
+
+    public static class RemarqueEntry implements BaseColumns {
+        public static final String TABLE_NAME = "Remarque";
+        public static final String COL_ID_PROP = "idProp";
+        public static final String COL_REMARQUE = "remarque";
     }
 }

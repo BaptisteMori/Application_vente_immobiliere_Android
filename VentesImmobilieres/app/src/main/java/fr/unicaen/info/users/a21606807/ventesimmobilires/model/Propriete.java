@@ -34,9 +34,8 @@ public class Propriete implements Parcelable {
         }
     };
 
-    public Propriete(String id, String titre, String description, int nombre_piece, ArrayList<String> caracteristiques, int prix,
-                     String ville, Vendeur vendeur, ArrayList<String> images, Long date) {
-
+    public Propriete(String id, String titre, String description, int nombre_piece, List<String> caracteristiques, int prix,
+                     String ville, Vendeur vendeur, List<String> images, Long date) {
         this.id = id;
         this.titre = titre;
         this.description = description;

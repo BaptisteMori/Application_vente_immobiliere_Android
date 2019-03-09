@@ -78,6 +78,35 @@ public class VentesImmobilieresDB {
         return cursor;
     }
 
+    public static Cursor lireVendeur(Context ctx, String idVendeur) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getReadableDatabase();
+
+        String[] colonnes = new String[] {
+                V_COL_ID,
+                V_COL_NOM,
+                V_COL_PRENOM,
+                V_COL_EMAIL,
+                V_COL_TEL
+        };
+
+        String[] selectionArgs = new String[] {
+                idVendeur
+        };
+
+        Cursor cursor = db.query(
+                V_TABLE_NAME,
+                colonnes,
+                V_COL_ID + "=?",
+                selectionArgs,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
     public static boolean proprieteInDatabase(Context ctx, Propriete propriete) {
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getReadableDatabase();
@@ -103,7 +132,35 @@ public class VentesImmobilieresDB {
         return cursor.getCount() == 1;
     }
 
+    public static boolean vendeurInDataBase(Context ctx, Vendeur vendeur) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getReadableDatabase();
+
+        String[] colonnes = new String[] {
+                V_COL_NOM
+        };
+
+        String[] selectionArgs = new String[] {
+                vendeur.getNom()
+        };
+
+        Cursor cursor = db.query(
+                V_TABLE_NAME,
+                colonnes,
+                V_COL_NOM + "=?",
+                selectionArgs,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor.getCount() == 1;
+    }
+
     public static long ajouterPropriete(Context ctx, Propriete propriete) {
+        if(!(vendeurInDataBase(ctx, propriete.getVendeur()))) {
+            ajouterVendeur(ctx,propriete.getVendeur());
+        }
         ContentValues insertValues = new ContentValues();
         insertValues.put(COL_TITRE, propriete.getTitre());
         insertValues.put(COL_DESCRIPTION, propriete.getDescription());

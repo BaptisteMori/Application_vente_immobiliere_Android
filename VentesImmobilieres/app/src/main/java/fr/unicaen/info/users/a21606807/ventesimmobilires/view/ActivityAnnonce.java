@@ -67,6 +67,8 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         Toolbar myToolbar = findViewById(R.id.annonce_toolbar);
         setSupportActionBar(myToolbar);
 
+        //VentesImmobilieresDB.initDatabase(this);
+
         /*
         ImageView image = (ImageView) findViewById(R.id.image_annonce);
         Picasso.get().load(
@@ -121,7 +123,6 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
 
 
         this.fillAnnonce(propriete);
-        //VentesImmobilieresDB.initDatabase(this);
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/immobilier.json");
         //this.getPropriete("https://ensweb.users.info.unicaen.fr/android-estate/mock-api/liste.json");
 

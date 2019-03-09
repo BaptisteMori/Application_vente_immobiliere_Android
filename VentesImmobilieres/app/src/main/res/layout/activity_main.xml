@@ -2,55 +2,33 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <Button
-        android:id="@+id/hasard"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="40dp"
-        android:text="@string/b_annonce_hasard"
-        android:textAllCaps="false"
-        android:onClick="openRandomAnnonce"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
-    <Button
-        android:id="@+id/deposer"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_toolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/b_deposer_bien"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/hasard"
-        app:layout_constraintStart_toStartOf="@+id/hasard"
-        app:layout_constraintTop_toBottomOf="@+id/hasard" />
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:theme="@style/ThemeOverlay.Randoomz.Toolbar"
+        app:title="Propriétés" />
 
-    <Button
-        android:id="@+id/lister"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/b_lister_bien"
-        android:textAllCaps="false"
-        android:onClick="openListAnnonces"
-        app:layout_constraintEnd_toEndOf="@+id/deposer"
-        app:layout_constraintStart_toStartOf="@+id/deposer"
-        app:layout_constraintTop_toBottomOf="@+id/deposer" />
-
-    <Button
-        android:id="@+id/profil"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/b_profil"
-        android:textAllCaps="false"
-        app:layout_constraintEnd_toEndOf="@+id/lister"
-        app:layout_constraintStart_toStartOf="@+id/lister"
-        app:layout_constraintTop_toBottomOf="@+id/lister" />
 </android.support.constraint.ConstraintLayout>

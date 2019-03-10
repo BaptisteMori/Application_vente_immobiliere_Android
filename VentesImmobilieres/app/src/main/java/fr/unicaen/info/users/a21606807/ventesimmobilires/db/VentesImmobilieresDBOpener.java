@@ -14,8 +14,8 @@ public class VentesImmobilieresDBOpener extends SQLiteOpenHelper {
             VentesImmobilieresContract.ProprieteEntry.COL_CARACTERISTIQUES + " varchar(300)," +
             VentesImmobilieresContract.ProprieteEntry.COL_PRIX + " int," +
             VentesImmobilieresContract.ProprieteEntry.COL_VILLE + " varchar(50)," +
-            VentesImmobilieresContract.ProprieteEntry.COL_ID_VENDEUR + " int," +
-            VentesImmobilieresContract.ProprieteEntry.COL_IMAGES + " varchar(500)," +
+            VentesImmobilieresContract.ProprieteEntry.COL_ID_VENDEUR + " VARCHAR(100)," +
+            VentesImmobilieresContract.ProprieteEntry.COL_IMAGES + " LONGTEXT," +
             VentesImmobilieresContract.ProprieteEntry.COL_DATE + " datetime," +
             VentesImmobilieresContract.ProprieteEntry.COL_REMARQUES + " LONGTEXT, " +
             "UNIQUE(" + VentesImmobilieresContract.ProprieteEntry.COL_TITRE + ")" +

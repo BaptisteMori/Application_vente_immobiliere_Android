@@ -59,6 +59,25 @@
                         "endColumns": "10,10,10,10",
                         "endOffsets": "20182,20608,21031,21466"
                     }
+                },
+                {
+                    "source": "C:\\Users\\Val\\Desktop\\cours\\L3\\android\\Application_vente_immobiliere_Android\\VentesImmobilieres\\app\\src\\main\\res\\values-v21\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "59",
+                        "endLines": "9",
+                        "endColumns": "12",
+                        "endOffsets": "373"
+                    },
+                    "to": {
+                        "startLines": "307",
+                        "startColumns": "4",
+                        "startOffsets": "21981",
+                        "endLines": "313",
+                        "endColumns": "12",
+                        "endOffsets": "22289"
+                    }
                 }
             ]
         }

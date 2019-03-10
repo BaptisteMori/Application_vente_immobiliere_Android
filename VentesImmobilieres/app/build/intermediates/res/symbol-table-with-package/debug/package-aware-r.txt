@@ -631,6 +631,7 @@ color foreground_material_dark
 color foreground_material_light
 color highlighted_text_material_dark
 color highlighted_text_material_light
+color hoverGray
 color material_blue_grey_800
 color material_blue_grey_900
 color material_blue_grey_950
@@ -1003,11 +1004,15 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_home_black_24dp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable item_default
+drawable item_list_style
+drawable item_pressed
 drawable mtrl_snackbar_background
 drawable mtrl_tabs_default_indicator
 drawable navigation_empty_icon
@@ -1045,6 +1050,7 @@ id action_context_bar
 id action_delete
 id action_divider
 id action_image
+id action_main
 id action_menu_divider
 id action_menu_presenter
 id action_mode_bar
@@ -1087,7 +1093,6 @@ id custom
 id customPanel
 id decor_content_parent
 id default_activity_button
-id deposer
 id description
 id design_bottom_sheet
 id design_menu_item_action_area
@@ -1114,12 +1119,12 @@ id ghost_view
 id gone
 id group_divider
 id groups
-id hasard
 id home
 id homeAsUp
 id horizontalScrollView
 id icon
 id icon_group
+id icon_list_annonce
 id ifRoom
 id image
 id image_layout
@@ -1127,6 +1132,7 @@ id info
 id invisible
 id italic
 id item_touch_helper_previous_elevation
+id lab_no_results
 id labeled
 id largeLabel
 id layout_item
@@ -1137,7 +1143,8 @@ id linearLayout
 id linearLayout2
 id listMode
 id list_item
-id lister
+id main
+id main_toolbar
 id masked
 id message
 id middle
@@ -1160,7 +1167,6 @@ id parentPanel
 id parent_matrix
 id percent
 id pin
-id profil
 id progress_circular
 id progress_horizontal
 id radio
@@ -1336,6 +1342,8 @@ layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu menu_activity_annonce
+menu menu_activity_list
+menu menu_activity_main
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description
@@ -1399,6 +1407,7 @@ string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
 string mtrl_chip_close_icon_content_description
+string no_results
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through
@@ -1910,6 +1919,7 @@ style Widget_MaterialComponents_TextInputLayout_OutlinedBox
 style Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense
 style Widget_MaterialComponents_Toolbar
 style Widget_Support_CoordinatorLayout
+style item
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionMenuItemView android_minWidth
@@ -1987,3 +1997,4 @@ styleable Toolbar android_gravity android_minHeight buttonGravity collapseConten
 styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml file_paths

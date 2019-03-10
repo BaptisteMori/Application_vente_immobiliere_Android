@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{article} %style de document
+\usepackage[utf8]{inputenc} %encodage des caractères
+\usepackage[french]{babel} %paquet de langue français
+\usepackage[T1]{fontenc} %encodage de la police
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry} %marges
+\usepackage{graphicx} %affichage des images
+\usepackage{amssymb}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{
+	hidelinks,
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+
+\begin{document} %début du document
+
+%----------------------------------
+%page de garde
+%----------------------------------
+
+\begin{titlepage}
+
+\vspace{7cm}
+
+\begin{center}
+
+\begin{Huge}
+Rapport Android\\
+\end{Huge}
+\vspace{2cm}
+\begin{large}
+Chagneux Dimitri 21606807\\
+Mori Baptiste 21602052\\
+Leblond Valentin 21609038\\
+\vspace{1cm}
+Lien du projet:\\
+\url{https://github.com/BaptisteMori/Application_vente_immobiliere_Android}\\
+\vspace{1cm}
+L3-Informatique
+\end{large}
+
+\end{center}
+\end{titlepage}
+
+
+%------------------------------
+%sommaire
+%------------------------------
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+%------------------------------
+%contenu
+%------------------------------
+
+
+\section{Présentation du sujet}
+
+L'objectif de ce devoir était de réaliser une application de vente de biens immobiliers.
+
+\section{Fonctionnalités implémentées}
+
+\subsection{Liste de biens}
+Moshi...
+
+\subsection{Base de donnée local}
+Le titre dit tout...
+
+\subsection{Visualisation d'un bien}
+La visualisation d'une propriété se fait sur une activité appelée ActivityAnnonce.
+On y affiche le titre, une galerie d'images, le prix et la localisation, une description et des informations sur le vendeur. On ajoute en plus, si la propriété est sauvegardée dans la base de donnée locale, une liste de remarques.
+
+\subsection{Menus}
+Notre application dispose de deux menus: le premier est celui qui se trouve sur la première activité, lorsqu'on démarre l'application. Il permet d'accéder à la liste des propriétés sauvegardées en local. Le second est celui de l'activité qui affiche une annonce. On y trouve:\\
+    -un bouton pour aller sur la liste de toutes les annonces (menu);\\
+    -un bouton pour prendre une photo;\\
+    -un bouton permettant d'enregistrer l'annonce en local, qui affiche un message dans une snackbar si l'annonce est déjà présente dans la base de donnée;\\
+    -un bouton pour supprimer l'annonce de la base de donnée locale, qui affiche également un message dans une snackbar si l'annonce n'est pas dans la base;\\
+    -un bouton listant les annonces sauvegardées en local (de la même manière que dans le premier menu);\\
+    -un bouton pour ajouter une remarque si l'annonce se trouve en local. Dans le cas contraire on affiche un message dans une snackbar.
+
+\subsection{Remarques et photos}
+Ajout de remarques, prise de photos, galerie de photos pour chaque propriété...
+
+
+\section{Gestion du projet}
+
+\subsection{Organisation}
+
+\subsection{Difficultés}
+Moshi, prise de photo (affichage dans la galerie surtout)...
+
+
+\section{Répartition du travail}
+
+\end{document}

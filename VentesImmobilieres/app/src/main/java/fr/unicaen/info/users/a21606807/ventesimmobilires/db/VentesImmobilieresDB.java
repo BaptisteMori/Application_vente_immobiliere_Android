@@ -137,17 +137,17 @@ public class VentesImmobilieresDB {
         SQLiteDatabase db = dbo.getReadableDatabase();
 
         String[] colonnes = new String[] {
-                V_COL_NOM
+                V_COL_ID
         };
 
         String[] selectionArgs = new String[] {
-                vendeur.getNom()
+                vendeur.getId()
         };
 
         Cursor cursor = db.query(
                 V_TABLE_NAME,
                 colonnes,
-                V_COL_NOM + "=?",
+                V_COL_ID + "=?",
                 selectionArgs,
                 null,
                 null,

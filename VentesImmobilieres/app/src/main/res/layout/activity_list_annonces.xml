@@ -10,11 +10,10 @@
         android:id="@+id/recycler_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/main_toolbar"
@@ -29,5 +28,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:theme="@style/ThemeOverlay.Randoomz.Toolbar"
         app:title="Annonces sauvegardées" />
+
+    <TextView
+        android:id="@+id/lab_no_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_toolbar" />
 
 </android.support.constraint.ConstraintLayout>

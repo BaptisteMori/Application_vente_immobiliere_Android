@@ -10,6 +10,9 @@
     <string name="b_lister_bien">Lister les biens</string>
     <string name="b_profil">Mon profil</string>
 
+    <!-- List annonces -->
+    <string name="no_results">Aucunes annonces enregistrées</string>
+
     <!-- Toolbar ActivityAnnonce -->
     <string name="b_return_menu">Menu</string>
     <string name="b_sauvegarder_annonce">Sauvegarder sur l\'appareil</string>

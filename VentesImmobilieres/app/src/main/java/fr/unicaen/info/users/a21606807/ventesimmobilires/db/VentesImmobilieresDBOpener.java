@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class VentesImmobilieresDBOpener extends SQLiteOpenHelper {
 
     private static final String CREATE_PROP = "create table if not exists " + VentesImmobilieresContract.ProprieteEntry.TABLE_NAME + "(" +
-            VentesImmobilieresContract.ProprieteEntry.COL_ID + " integer primary key autoincrement," +
+            VentesImmobilieresContract.ProprieteEntry.COL_ID + " VARCHAR(100) primary key," +
             VentesImmobilieresContract.ProprieteEntry.COL_TITRE + " varchar(50)," +
             VentesImmobilieresContract.ProprieteEntry.COL_DESCRIPTION + " varchar(250)," +
             VentesImmobilieresContract.ProprieteEntry.COL_PIECES + " int," +
@@ -22,7 +22,7 @@ public class VentesImmobilieresDBOpener extends SQLiteOpenHelper {
             ");";
 
     private static final String CREATE_VENDEUR = "create table if not exists " + VentesImmobilieresContract.VendeurEntry.TABLE_NAME + "(" +
-            VentesImmobilieresContract.VendeurEntry.COL_ID + " integer primary key autoincrement," +
+            VentesImmobilieresContract.VendeurEntry.COL_ID + " VARCHAR(100) primary key," +
             VentesImmobilieresContract.VendeurEntry.COL_NOM + " varchar(30)," +
             VentesImmobilieresContract.VendeurEntry.COL_PRENOM + " varchar(30)," +
             VentesImmobilieresContract.VendeurEntry.COL_EMAIL + " varchar(50)," +
@@ -30,7 +30,7 @@ public class VentesImmobilieresDBOpener extends SQLiteOpenHelper {
             ");";
 
     private  static final String CREATE_REMARQUE = "create table if not exists " + VentesImmobilieresContract.RemarqueEntry.TABLE_NAME + "(" +
-            VentesImmobilieresContract.RemarqueEntry.COL_ID_PROP + " integer," +
+            VentesImmobilieresContract.RemarqueEntry.COL_ID_PROP + " VARCHAR(100)," +
             VentesImmobilieresContract.RemarqueEntry.COL_REMARQUE + " LONGTEXT" +
             ");";
 

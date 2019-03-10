@@ -107,6 +107,31 @@ public class VentesImmobilieresDB {
         return cursor;
     }
 
+    public static Cursor lireTousVendeur(Context ctx) {
+        VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
+        SQLiteDatabase db = dbo.getReadableDatabase();
+
+        String[] colonnes = new String[] {
+                V_COL_ID,
+                V_COL_NOM,
+                V_COL_PRENOM,
+                V_COL_EMAIL,
+                V_COL_TEL
+        };
+
+        Cursor cursor = db.query(
+                V_TABLE_NAME,
+                colonnes,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+        return cursor;
+    }
+
     public static boolean proprieteInDatabase(Context ctx, Propriete propriete) {
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getReadableDatabase();
@@ -158,9 +183,6 @@ public class VentesImmobilieresDB {
     }
 
     public static long ajouterPropriete(Context ctx, Propriete propriete) {
-        if(!(vendeurInDataBase(ctx, propriete.getVendeur()))) {
-            ajouterVendeur(ctx,propriete.getVendeur());
-        }
         ContentValues insertValues = new ContentValues();
         insertValues.put(COL_TITRE, propriete.getTitre());
         insertValues.put(COL_DESCRIPTION, propriete.getDescription());

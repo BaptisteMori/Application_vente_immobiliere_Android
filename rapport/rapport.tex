@@ -73,7 +73,10 @@ L'objectif de ce devoir était de réaliser une application de vente de biens im
 \section{Fonctionnalités implémentées}
 
 \subsection{Liste de biens}
-Moshi...
+Du côté de la récupération des annonces en ligne, nous avons commencé par créer une requête pour aller chercher le fichier en ligne.
+A partir de la le résultat obtenu est un fichier au format json , ce qui implique l'utilisation de la librairie Moshi pour parser ce fichier. \\
+Pour cela nous avons créé dans un premier temps un parseur pour traiter le cas où il n'y a qu'une seul propriété puis un second parseur pour le cas où il y a plusieurs annonces.\\
+Nous avons était obligé de gérer ces deux cas car dans le cas où il y a plusieurs annonces celle ci sont dans une liste contrairement au cas où il n'y en a qu'une seul.
 
 \subsection{Base de donnée local}
 Le titre dit tout...

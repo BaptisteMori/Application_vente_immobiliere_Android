@@ -24,7 +24,8 @@
         <activity
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".view.ActivityAnnonce" />
-        <activity android:name=".view.ListAnnoncesActivity" />
+        <activity android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:name=".view.ListAnnoncesActivity" />
         <activity android:name=".view.RemarqueActivity" />
 
         <provider

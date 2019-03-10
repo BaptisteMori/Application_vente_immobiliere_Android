@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,6 +34,9 @@ public class ListAnnoncesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         propriete_list = new ArrayList<>();
         setContentView(R.layout.activity_list_annonces);
+
+        Toolbar myToolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(myToolbar);
 
         Cursor c = VentesImmobilieresDB.lireTousPropietes(this);
         if (c.moveToFirst()) {
@@ -75,6 +81,36 @@ public class ListAnnoncesActivity extends AppCompatActivity {
         recycler.setLayoutManager(new LinearLayoutManager(this));
         AnnonceAdapter annonce_adapter = new AnnonceAdapter(this, this.propriete_list);
         recycler.setAdapter(annonce_adapter);
+    }
+
+    public void openDialog() {
+        DeleteProprieteDialog dialog = new DeleteProprieteDialog();
+        dialog.show(getSupportFragmentManager(), "DeleteProprieteDialog");
+    }
+
+    // crée le menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_activity_list, menu);
+        return true;
+    }
+
+
+    // callback déclenché lors d'une action sur le menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_main) {
+            this.finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void openAnnonce(View v, Propriete propriete) {

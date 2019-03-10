@@ -220,6 +220,8 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
                     Log.i("val", res);
                 } while (c.moveToNext());
             }
+            Intent intent = new Intent(this,ListAnnoncesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.action_remarque) {
             if (VentesImmobilieresDB.proprieteInDatabase(this, this.propriete)) {
                 Intent intent = new Intent(this, RemarqueActivity.class);

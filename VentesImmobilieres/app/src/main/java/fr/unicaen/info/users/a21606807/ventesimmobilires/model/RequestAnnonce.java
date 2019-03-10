@@ -6,6 +6,7 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -37,12 +38,44 @@ public class RequestAnnonce {
                     if (!response.isSuccessful()) {
                         throw new IOException("Unexpected HTTP code " + response);
                     }
-                    Log.i("val","ok bonjour");
                     Moshi moshi = new Moshi.Builder().add(new ProprieteResponseAdapter()).build();
                     JsonAdapter<ProprieteResponse> jsonAdapter = moshi.adapter(ProprieteResponse.class);
 
                     RequestAnnonce.this.responseJson = jsonAdapter.fromJson(responseBody.string());
-                    Log.i("val", ""+responseJson);
+                }
+            }
+        });
+    }
+
+    public void getOnePropriete(String url) {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (!response.isSuccessful()) {
+                        throw new IOException("Unexpected HTTP code " + response);
+                    }
+                    Moshi moshi = new Moshi.Builder().add(new ProprieteAdapter()).build();
+                    JsonAdapter<Propriete> jsonAdapter = moshi.adapter(Propriete.class);
+                    Propriete p = jsonAdapter.fromJson(responseBody.string());
+                    ArrayList<Propriete> listp = new ArrayList<>();
+                    listp.add(p);
+                    boolean succes = false;
+                    if (p!=null){
+                        succes = true;
+                    }
+                    RequestAnnonce.this.responseJson = new ProprieteResponse(succes, listp);
                 }
             }
         });

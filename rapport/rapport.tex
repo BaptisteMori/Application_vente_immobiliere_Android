@@ -92,17 +92,38 @@ Notre application dispose de deux menus: le premier est celui qui se trouve sur 
     -un bouton pour ajouter une remarque si l'annonce se trouve en local. Dans le cas contraire on affiche un message dans une snackbar.
 
 \subsection{Remarques et photos}
-Ajout de remarques, prise de photos, galerie de photos pour chaque propriété...
+En ce qui concerne les remarques, il est possible d'en ajouter si la propriété se trouve sur la base de donnée en local. Si c'est le cas, en cliquant sur le bouton du menu d'une annonce on arrive sur une nouvelle vue contenant un champ de texte, un bouton retour et un bouton valider.
+Au clique sur le bouton valider, la remarque est ajoutée en base de donnée et s'affiche sur la vue de l'annonce concernée. Elle est supprimée si l'annonce est supprimée de la base de données locale.
+\vspace{1cm}
 
+Pour les photos, l'appui sur l'icône de l'appareil photo ouvre l'application caméra par défaut, seulement si l'annonce est sauvegardée en locale.\\
+Une fois la photo prise, on l'enregistre dans les fichiers de l'application avec un nom du type JPEG-yyyyMMdd-HHmmss.jpg". On ajoute ensuite le chemin de l'image dans la liste des images de l'application.
 
 \section{Gestion du projet}
 
 \subsection{Organisation}
+Commun:\\
+-Débuts de l'application (vue d'une annonce, lister des annonces codées en dur)
+\vspace{0.5cm}
+
+Baptiste:\\
+-Moshi\\
+-Aide sur les autres aspects
+\vspace{0.5cm}
+
+Valentin:\\
+-Base de données
+-Remarques (base de données)\\
+-Aide sur les autres aspects\\
+-Aspects graphiques (liste des annonces)
+\vspace{0.5cm}
+
+Dimitri:\\
+-Liste des annonces, à partir du Moshi, dans une vue\\
+-Remarques\\
+-Prise de photos
 
 \subsection{Difficultés}
 Moshi, prise de photo (affichage dans la galerie surtout)...
-
-
-\section{Répartition du travail}
 
 \end{document}

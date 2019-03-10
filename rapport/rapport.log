@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.3.10)  10 MAR 2019 15:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.3.10)  10 MAR 2019 20:19
 entering extended mode
 **./rapport.tex
 (rapport.tex
@@ -705,20 +705,20 @@ been already used, duplicate ignored
                    \relax 
 l.62 \newpage
               [1] [2] [3]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 108.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 108.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 129.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 129.
  (rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 108.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 108.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 129.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 129.
 Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 011809FC0638DADF930B74715691791D;709.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 108.
+(rerunfilecheck)             Checksum: 9482690B128D8C7546AD699F6529995A;647.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 129.
  ) 
 Here is how much of TeX's memory you used:
- 17906 strings out of 492946
- 325343 string characters out of 3138644
+ 17904 strings out of 492946
+ 325323 string characters out of 3138644
  407857 words of memory out of 3000000
- 21466 multiletter control sequences out of 15000+200000
+ 21465 multiletter control sequences out of 15000+200000
  16597 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,5n,48p,412b,423s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -730,9 +730,9 @@ ec/dpi600\ecrm1200.pk> <C:\Users\dchag\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour
 \2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1440.pk> <C:\Users\dchag\AppData\Lo
 cal\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1440.pk> <C:\Users\dchag\
 AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk>
-Output written on rapport.pdf (4 pages, 91921 bytes).
+Output written on rapport.pdf (4 pages, 93724 bytes).
 PDF statistics:
  327 PDF objects out of 1000 (max. 8388607)
- 16 named destinations out of 1000 (max. 500000)
- 101 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 15 named destinations out of 1000 (max. 500000)
+ 93 words of extra memory for PDF output out of 10000 (max. 10000000)
 

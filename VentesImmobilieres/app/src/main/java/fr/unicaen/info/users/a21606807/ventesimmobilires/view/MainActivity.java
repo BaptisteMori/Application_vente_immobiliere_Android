@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_save_list) {
-            Intent intent = new Intent(this,ListAnnoncesActivity.class);
+            Intent intent = new Intent(this, ListAnnoncesActivity.class);
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);

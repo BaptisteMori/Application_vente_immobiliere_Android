@@ -42,23 +42,17 @@ public class ListAnnoncesActivity extends AppCompatActivity {
         if (c.moveToFirst()) {
             do {
                 Vendeur vendeur = null;
-                Log.i("val","ICI OK");
                 Cursor cv = VentesImmobilieresDB.lireVendeur(this,c.getString(7));
-                Log.i("val",cv.getCount()+"");
                 if (cv.moveToFirst()) {
-                    do {
-                        Log.i("val","moveToFirst de cv");
-                        vendeur = new Vendeur(
-                                cv.getString(0),
-                                cv.getString(1),
-                                cv.getString(2),
-                                cv.getString(3),
-                                cv.getString(4)
-                        );
-                    } while (c.moveToNext());
+                    vendeur = new Vendeur(
+                            cv.getString(0),
+                            cv.getString(1),
+                            cv.getString(2),
+                            cv.getString(3),
+                            cv.getString(4)
+                    );
                 }
                 if (vendeur != null) {
-                    Log.i("val","VENDEUR PAS NUL");
                     Propriete propriete = new Propriete(
                             c.getString(0),
                             c.getString(1),
@@ -72,15 +66,19 @@ public class ListAnnoncesActivity extends AppCompatActivity {
                             Long.parseLong(c.getString(9))
                     );
                     this.propriete_list.add(propriete);
-                    Log.i("val","PROPR AJOUTEE A LA LISTE");
                 }
             } while (c.moveToNext());
         }
 
-        RecyclerView recycler = findViewById(R.id.recycler_view);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        AnnonceAdapter annonce_adapter = new AnnonceAdapter(this, this.propriete_list);
-        recycler.setAdapter(annonce_adapter);
+        if (propriete_list.size() > 0) {
+            RecyclerView recycler = findViewById(R.id.recycler_view);
+            recycler.setLayoutManager(new LinearLayoutManager(this));
+            AnnonceAdapter annonce_adapter = new AnnonceAdapter(this, this.propriete_list);
+            recycler.setAdapter(annonce_adapter);
+        } else {
+            TextView text_no_results = (TextView) findViewById(R.id.lab_no_results);
+            text_no_results.setText(R.string.no_results);
+        }
     }
 
     public void openDialog() {

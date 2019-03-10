@@ -67,6 +67,18 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         Toolbar myToolbar = findViewById(R.id.annonce_toolbar);
         setSupportActionBar(myToolbar);
 
+        Cursor cv = VentesImmobilieresDB.lireTousVendeur(this);
+        if (cv.moveToFirst()) {
+            do {
+                Log.i("val", "moveToFirst v");
+                Log.i("val", "v " +
+                        cv.getString(0) + "_" +
+                        cv.getString(1) + "_" +
+                        cv.getString(2) + "_" +
+                        cv.getString(3) + "_" +
+                        cv.getString(4));
+            } while (cv.moveToNext());
+        }
         //VentesImmobilieresDB.initDatabase(this);
 
         /*
@@ -195,6 +207,8 @@ public class ActivityAnnonce extends AppCompatActivity implements DialogListener
         } else if (id == R.id.action_save) {
             long idProp = VentesImmobilieresDB.ajouterPropriete(this, this.propriete);
             if (idProp >= 0) {
+                long idv = VentesImmobilieresDB.ajouterVendeur(this, this.propriete.getVendeur());
+
                 this.showSnackBarMessage("Propriété enregistrée");
             } else {
                 this.showSnackBarMessage("La propriété est déjà enregistrée");

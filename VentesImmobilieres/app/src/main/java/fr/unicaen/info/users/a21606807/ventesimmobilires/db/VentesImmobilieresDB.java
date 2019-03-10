@@ -184,6 +184,7 @@ public class VentesImmobilieresDB {
 
     public static long ajouterPropriete(Context ctx, Propriete propriete) {
         ContentValues insertValues = new ContentValues();
+        insertValues.put(COL_ID, propriete.getId());
         insertValues.put(COL_TITRE, propriete.getTitre());
         insertValues.put(COL_DESCRIPTION, propriete.getDescription());
         insertValues.put(COL_PIECES, propriete.getNombre_piece());
@@ -229,6 +230,8 @@ public class VentesImmobilieresDB {
     public static Cursor lireRemarquePropriete(Context ctx, String idPropriete) {
         VentesImmobilieresDBOpener dbo = new VentesImmobilieresDBOpener(ctx, DB_NAME, null, 1);
         SQLiteDatabase db = dbo.getReadableDatabase();
+
+        Log.i("val", "ID = " + idPropriete);
 
         String[] colonnes = new String[] {
                 R_COL_REMARQUE

@@ -11,6 +11,7 @@
 \usepackage{color}
 \usepackage{tikz}
 \usepackage{hyperref}
+\usepackage{listings}
 \hypersetup{
 	hidelinks,
     colorlinks,
@@ -80,7 +81,19 @@ Nous avons été obligés de gérer ces deux cas car dans le cas où il y a plus
 Une fois la liste des propriétés récupérées, nous l'affichons dans la vue principale de l'application, dans un LinearLayout.
 
 \subsection{Base de donnée local}
-Le titre dit tout...
+Nous avons séparés la base de donnée en trois tables une pour les propriétés, une pour les vendeurs et une pour les remarques qui peuvent être faite sur une propriété quand celle-ci est sauvegardée en local. La table remarque possède deux colonnes une avec l'identifiant de la propriété sur laquelle elle repose et la deuxième sur le texte que contient la remarque.
+
+\begin{center}
+\includegraphics[scale=0.5]{images/bdd.png}
+\end{center}
+
+Nous avons essayé d'utiliser Room pour construire la partie base de données seulement nous avons rencontrés des problèmes dans la balise du getAll, nous avions une erreur sur le nom de la table qui était qu'il ne la trouvait pas (sachant que nous avions mis les balises @ColumnInfo avant chaque attribut de la classe Propriete).
+\begin{lstlisting}
+@Query("SELECT * FROM Propriete")
+List<Propriete> getAll();
+\end{lstlisting}
+
+Ne trouvant pas comment résoudre le problème, nous avons finis par faire la base de donnée à la main, comme vu en TP, avec trois classes une classe VentesImmobilieresContract qui permet de mettre les noms des tables et de leurs colonnes ainsi que le nom de la base de donnée, la seconde classe VentesImmobilieresDBOpener permet de pouvoir créer et supprimer les tables selon si la base de donnée est crée, supprimée ou mise à jour. La dernière classe VentesImmobilieresDB permet de faire les requêtes sur la base de donnée.  
 
 \subsection{Visualisation d'un bien}
 La visualisation d'une propriété se fait sur une activité appelée ActivityAnnonce.
